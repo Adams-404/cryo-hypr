@@ -1,5 +1,3 @@
-@import url("colors.css");
-
 * {
     border: none;
     border-radius: 0px;
@@ -10,10 +8,12 @@
 }
 
 window#waybar {
-    background: transparent;
+    background: rgba(18, 20, 30, 0.82);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Base pill styling for all modules */
+/* Individual modules: Clean, transparent, NO box borders and NO drop shadows! */
 #workspaces,
 #window,
 #clock,
@@ -23,37 +23,36 @@ window#waybar {
 #battery,
 #tray,
 #custom-power {
-    background: @bg_color;
-    color: @text_color;
-    padding: 3px 14px;
-    margin: 4px 3px;
-    border-radius: 12px;
-    border: 1px solid @border_color;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+    color: #c0caf5;
+    padding: 3px 10px;
+    margin: 3px 2px;
+    border: none;
+    box-shadow: none;
+    transition: all 0.2s ease;
 }
 
 /* Left: Workspaces */
 #workspaces {
-    padding: 2px 5px;
+    padding: 2px 4px;
 }
 
 #workspaces button {
     padding: 0 8px;
     margin: 2px 2px;
-    color: @text_muted;
+    color: #565f89;
     border-radius: 8px;
     font-size: 12px;
     transition: all 0.2s ease;
 }
 
 #workspaces button:hover {
-    background: @accent_alpha;
-    color: @accent_color;
+    background: rgba(255, 255, 255, 0.1);
+    color: #bb9af7;
 }
 
 #workspaces button.active {
-    background: @accent_color;
+    background: #7aa2f7;
     color: #1a1b26;
     font-weight: 900;
 }
@@ -63,24 +62,26 @@ window#waybar {
     color: #1a1b26;
 }
 
+/* Network with fixed width and tabular numbers so speed doesn't jitter or push other items */
+#network {
+    color: #73daca;
+    min-width: 155px;
+}
+
 /* Active window title */
 #window {
-    color: @text_muted;
+    color: #7a84a8;
     font-weight: 500;
     font-size: 12px;
-    padding: 3px 12px;
 }
 
 /* Center: Clock */
 #clock {
-    color: @accent_color;
-    background: @bg_color;
-    border: 1px solid @border_color;
+    color: #7dcfff;
     font-weight: 800;
-    padding: 3px 16px;
 }
 
-/* Right: Modules with color accents */
+/* Right modules */
 #pulseaudio {
     color: #bb9af7;
 }
@@ -89,28 +90,8 @@ window#waybar {
     color: #f7768e;
 }
 
-#pulseaudio:hover {
-    background: rgba(187, 154, 247, 0.18);
-}
-
 #backlight {
-    color: @accent_color;
-}
-
-#backlight:hover {
-    background: @accent_alpha;
-}
-
-#network {
-    color: #73daca;
-}
-
-#network.disconnected {
-    color: #f7768e;
-}
-
-#network:hover {
-    background: rgba(115, 218, 202, 0.18);
+    color: #e0af68;
 }
 
 #battery {
@@ -118,7 +99,7 @@ window#waybar {
 }
 
 #battery.charging {
-    color: @accent_color;
+    color: #7aa2f7;
 }
 
 #battery.warning:not(.charging) {
@@ -127,44 +108,18 @@ window#waybar {
 
 #battery.critical:not(.charging) {
     color: #f7768e;
-    animation-name: blink;
-    animation-duration: 0.8s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#battery:hover {
-    background: rgba(158, 206, 106, 0.18);
 }
 
 #custom-power {
     color: #f7768e;
-    padding: 3px 12px;
-    margin-right: 6px;
-    border: 1px solid rgba(247, 118, 142, 0.25);
+    padding: 3px 8px;
+    margin-right: 4px;
 }
 
 #custom-power:hover {
-    background: #f7768e;
-    color: #1a1b26;
+    color: #ffffff;
 }
 
 #tray {
-    padding: 0 10px;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-}
-
-@keyframes blink {
-    to {
-        background-color: #f7768e;
-        color: #1a1b26;
-    }
+    padding: 0 8px;
 }

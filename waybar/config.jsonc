@@ -5,7 +5,7 @@
     "margin-top": 8,
     "margin-left": 12,
     "margin-right": 12,
-    "spacing": 6,
+    "spacing": 4,
 
     "modules-left": [
         "hyprland/workspaces",
@@ -15,9 +15,9 @@
         "clock"
     ],
     "modules-right": [
+        "network",
         "pulseaudio",
         "backlight",
-        "network",
         "battery",
         "tray",
         "custom/power"
@@ -28,23 +28,38 @@
         "all-outputs": true,
         "active-only": false,
         "on-click": "activate",
-        "format": "{id}"
+        "format": "{id}",
+        "persistent-workspaces": {
+            "*": 5
+        }
     },
 
     "hyprland/window": {
         "format": "{}",
-        "max-length": 35,
+        "max-length": 30,
         "separate-outputs": true
     },
 
     "tray": {
         "icon-size": 16,
-        "spacing": 10
+        "spacing": 8
     },
 
     "clock": {
         "format": "  {:%H:%M     %a, %b %d}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "network": {
+        "interval": 1,
+        "format-wifi": "   {bandwidthDownBytes}   {bandwidthUpBytes}",
+        "format-ethernet": "   {bandwidthDownBytes}   {bandwidthUpBytes}",
+        "format-linked": "  (No IP)",
+        "format-disconnected": "⚠ Disconnected",
+        "tooltip-format": "SSID: {essid} ({signalStrength}%)\nIP: {ipaddr}\nInterface: {ifname}\n Down: {bandwidthDownBytes} |  Up: {bandwidthUpBytes}",
+        "tooltip-format-wifi": "SSID: {essid} ({signalStrength}%)\nIP: {ipaddr}\nInterface: {ifname}\n Down: {bandwidthDownBytes} |  Up: {bandwidthUpBytes}",
+        "tooltip-format-ethernet": "{ifname} ({ipaddr})\n Down: {bandwidthDownBytes} |  Up: {bandwidthUpBytes}",
+        "tooltip-format-disconnected": "Disconnected"
     },
 
     "backlight": {
@@ -63,18 +78,6 @@
         "format-plugged": "  {capacity}%",
         "format-alt": "{icon}  {time}",
         "format-icons": ["", "", "", "", ""]
-    },
-
-    "network": {
-        "interval": 1,
-        "format-wifi": "   {bandwidthDownBytes}   {bandwidthUpBytes}",
-        "format-ethernet": "   {bandwidthDownBytes}   {bandwidthUpBytes}",
-        "format-linked": "  (No IP)",
-        "format-disconnected": "⚠ Disconnected",
-        "tooltip-format": "{ifname} via {gwaddr}\n Down: {bandwidthDownBytes} |  Up: {bandwidthUpBytes}",
-        "tooltip-format-wifi": "SSID: {essid} ({signalStrength}%)\nIP: {ipaddr}\nInterface: {ifname}\n Down: {bandwidthDownBytes} |  Up: {bandwidthUpBytes}",
-        "tooltip-format-ethernet": "{ifname} ({ipaddr})\n Down: {bandwidthDownBytes} |  Up: {bandwidthUpBytes}",
-        "tooltip-format-disconnected": "Disconnected"
     },
 
     "pulseaudio": {

@@ -1,16 +1,10 @@
-@import url("colors.css");
-
-* {
-    font-family: "JetBrains Mono", "Font Awesome 6 Free", -apple-system, BlinkMacSystemFont, sans-serif;
-    outline: none;
-}
-
 window {
     margin: 0px;
-    border: 1.5px solid @border_color;
+    border: 1.5px solid rgba(122, 162, 247, 0.5);
     border-radius: 20px;
-    background-color: @bg_color;
+    background-color: rgba(22, 24, 34, 0.82);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+    font-family: "JetBrains Mono", "Font Awesome 6 Free", -apple-system, sans-serif;
 }
 
 #input {
@@ -18,16 +12,15 @@ window {
     padding: 12px 18px;
     border-radius: 14px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    color: @text_color;
+    color: #e0e6fc;
     background-color: rgba(255, 255, 255, 0.06);
     font-size: 14px;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #input:focus {
-    border: 1.5px solid @accent_color;
+    border: 1.5px solid #7aa2f7;
     background-color: rgba(255, 255, 255, 0.09);
-    box-shadow: 0 0 14px @accent_alpha;
+    box-shadow: 0 0 14px rgba(122, 162, 247, 0.25);
 }
 
 #inner-box {
@@ -48,21 +41,13 @@ window {
     background-color: transparent;
 }
 
-/* Hide all scrollbars completely (both horizontal and vertical) */
 scrollbar,
-scrollbar *,
 scrollbar slider,
-scrollbar trough,
-scrollbar.horizontal,
-scrollbar.vertical {
-    -gtk-indicator-style: none;
-    min-width: 0px !important;
-    min-height: 0px !important;
-    width: 0px !important;
-    height: 0px !important;
-    opacity: 0 !important;
-    border: none !important;
-    background: transparent !important;
+scrollbar trough {
+    min-width: 0px;
+    min-height: 0px;
+    opacity: 0;
+    background: transparent;
 }
 
 #entry {
@@ -71,24 +56,22 @@ scrollbar.vertical {
     padding: 8px 14px;
     margin: 2px 0px;
     background-color: transparent;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #entry:hover {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
-/* Modern Spotlight selected state: elegant border with soft glass tint matching wallpaper, NO solid block fill */
 #entry:selected {
-    border: 1.5px solid @accent_color;
-    background-color: @accent_alpha;
-    box-shadow: 0 2px 8px @accent_alpha;
+    border: 1.5px solid #7aa2f7;
+    background-color: rgba(122, 162, 247, 0.16);
+    box-shadow: 0 2px 8px rgba(122, 162, 247, 0.2);
 }
 
 #text {
     margin: 0px 8px;
     border: none;
-    color: @text_muted;
+    color: #a9b1d6;
     font-size: 13px;
     font-weight: 500;
 }
