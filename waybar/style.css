@@ -1,3 +1,5 @@
+@import url("colors.css");
+
 * {
     border: none;
     border-radius: 0px;
@@ -8,14 +10,12 @@
 }
 
 window#waybar {
-    background: rgba(18, 20, 30, 0.82);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: transparent;
+    border: none;
 }
 
-/* Individual modules: Clean, transparent, NO box borders and NO drop shadows! */
+/* Base floating pill styling for every module individually */
 #workspaces,
-#window,
 #clock,
 #pulseaudio,
 #backlight,
@@ -23,16 +23,36 @@ window#waybar {
 #battery,
 #tray,
 #custom-power {
-    background: transparent;
-    color: #c0caf5;
-    padding: 3px 10px;
-    margin: 3px 2px;
-    border: none;
-    box-shadow: none;
+    background: @bg_color;
+    color: @text_color;
+    padding: 3px 12px;
+    margin: 4px 3px;
+    border-radius: 12px;
+    border: 1px solid @border_color;
     transition: all 0.2s ease;
 }
 
-/* Left: Workspaces */
+/* Active window title: floating pill only when not empty */
+#window {
+    background: @bg_color;
+    color: @text_muted;
+    font-weight: 500;
+    font-size: 12px;
+    padding: 3px 12px;
+    margin: 4px 3px;
+    border-radius: 12px;
+    border: 1px solid @border_color;
+    transition: all 0.2s ease;
+}
+
+window#waybar.empty #window {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Left: Workspaces pill */
 #workspaces {
     padding: 2px 4px;
 }
@@ -40,19 +60,19 @@ window#waybar {
 #workspaces button {
     padding: 0 8px;
     margin: 2px 2px;
-    color: #565f89;
+    color: @text_muted;
     border-radius: 8px;
     font-size: 12px;
     transition: all 0.2s ease;
 }
 
 #workspaces button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #bb9af7;
+    background: @accent_alpha;
+    color: @accent_color;
 }
 
 #workspaces button.active {
-    background: #7aa2f7;
+    background: @accent_color;
     color: #1a1b26;
     font-weight: 900;
 }
@@ -62,26 +82,23 @@ window#waybar {
     color: #1a1b26;
 }
 
-/* Network with fixed width and tabular numbers so speed doesn't jitter or push other items */
+/* Center: Clock pill */
+#clock {
+    color: @accent_color;
+    font-weight: 800;
+    padding: 3px 16px;
+}
+
+/* Right: Network speed with fixed min-width to prevent module jitter */
 #network {
     color: #73daca;
-    min-width: 155px;
+    min-width: 165px;
 }
 
-/* Active window title */
-#window {
-    color: #7a84a8;
-    font-weight: 500;
-    font-size: 12px;
+#network.disconnected {
+    color: #f7768e;
 }
 
-/* Center: Clock */
-#clock {
-    color: #7dcfff;
-    font-weight: 800;
-}
-
-/* Right modules */
 #pulseaudio {
     color: #bb9af7;
 }
@@ -99,7 +116,7 @@ window#waybar {
 }
 
 #battery.charging {
-    color: #7aa2f7;
+    color: @accent_color;
 }
 
 #battery.warning:not(.charging) {
@@ -112,12 +129,14 @@ window#waybar {
 
 #custom-power {
     color: #f7768e;
-    padding: 3px 8px;
+    border: 1px solid rgba(247, 118, 142, 0.4);
+    padding: 3px 10px;
     margin-right: 4px;
 }
 
 #custom-power:hover {
-    color: #ffffff;
+    background: #f7768e;
+    color: #1a1b26;
 }
 
 #tray {
