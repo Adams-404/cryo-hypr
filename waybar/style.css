@@ -29,6 +29,7 @@ window#waybar {
     margin: 4px 3px;
     border-radius: 12px;
     border: 1px solid @border_color;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
     transition: all 0.2s ease;
 }
 
@@ -42,6 +43,7 @@ window#waybar {
     margin: 4px 3px;
     border-radius: 12px;
     border: 1px solid @border_color;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
     transition: all 0.2s ease;
 }
 
@@ -89,10 +91,14 @@ window#waybar.empty #window {
     padding: 3px 16px;
 }
 
-/* Right: Network speed with fixed min-width to prevent module jitter */
+/* Right: Network speed with fixed min-width to prevent module jitter and date shifting */
 #network {
     color: #73daca;
-    min-width: 165px;
+    min-width: 205px;
+}
+
+#network:hover {
+    background: @accent_alpha;
 }
 
 #network.disconnected {
