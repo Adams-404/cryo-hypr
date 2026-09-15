@@ -344,13 +344,21 @@ hl.window_rule({
     no_focus = true,
 })
 
--- Layer rules also return a handle.
--- local overlayLayerRule = hl.layer_rule({
---     name  = "no-anim-overlay",
---     match = { namespace = "^my-overlay$" },
---     no_anim = true,
--- })
--- overlayLayerRule:set_enabled(false)
+-- Layer rules for frosted glass blur
+hl.layer_rule({
+    name         = "blur-wofi",
+    match        = { namespace = "^wofi$" },
+    blur         = true,
+    dim_around   = true,
+    ignore_alpha = 0.2,
+})
+
+hl.layer_rule({
+    name         = "blur-waybar",
+    match        = { namespace = "^waybar$" },
+    blur         = true,
+    ignore_alpha = 0.2,
+})
 
 -- Hyprland-run windowrule
 hl.window_rule({
