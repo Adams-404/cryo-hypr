@@ -45,7 +45,7 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 | `SUPER + V` | Toggle floating mode |
 | `SUPER + J` | Toggle split layout |
 | `SUPER + Arrow Keys` | Move window focus |
-| `SUPER + Mouse Drag` | Move window across workspaces (Left Click) / Resize (Right Click) |
+| `SUPER + Mouse Drag` | **Smart Drag Window**: Drag across screen, drag to left/right edge to shift workspaces, or drop onto top status bar workspace buttons (1-5)! |
 | `SUPER + Shift + Left / Right` | Move active window to previous / next workspace |
 
 ### 🌐 Workspaces & Navigation
@@ -54,6 +54,8 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 | `SUPER + 1-9` | Switch to Workspace 1-9 |
 | `SUPER + Shift + 1-9` | Move active window to Workspace 1-9 |
 | `SUPER + Scroll Up / Down` | Scroll through workspaces |
+| `SUPER + Left Click Drag to Edge` | Drag window to left edge to move to next workspace (`ws + 1`) or right edge for previous (`ws - 1`) |
+| `SUPER + Drop onto Status Bar` | Drop dragged window onto workspace button (1-5) on Waybar to place it there |
 | `SUPER + Escape` | Exit session / Power menu |
 
 ---
