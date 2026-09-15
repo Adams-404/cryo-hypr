@@ -240,14 +240,18 @@ hl.config({
     },
 
     gestures = {
-        workspace_swipe                    = true,
-        workspace_swipe_fingers            = 3,
         workspace_swipe_distance           = 250,
         workspace_swipe_invert             = true,
         workspace_swipe_min_speed_to_force = 15,
         workspace_swipe_cancel_ratio       = 0.4,
         workspace_swipe_create_new         = true,
     },
+})
+
+hl.gesture({
+    fingers   = 3,
+    direction = "horizontal",
+    action    = "workspace"
 })
 
 -- Example per-device config
@@ -290,13 +294,6 @@ hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-
 -- Wallpaper switcher (Super+W to select, Super+Shift+W for next)
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/wallpaper.sh select"))
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/wallpaper.sh next"))
-
--- 4-Finger Swipe Up gesture to switch wallpaper
-hl.gesture({
-    fingers   = 4,
-    direction = "up",
-    action    = hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/wallpaper.sh next")
-})
 
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
