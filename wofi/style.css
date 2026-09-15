@@ -1,0 +1,73 @@
+window {
+    margin: 0px;
+    border: 2px solid rgba(122, 162, 247, 0.4);
+    border-radius: 16px;
+    background-color: rgba(26, 27, 38, 0.94);
+    font-family: "JetBrains Mono", sans-serif;
+    font-size: 13px;
+}
+
+#input {
+    margin: 16px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #c0caf5;
+    background-color: rgba(36, 40, 59, 0.85);
+    font-size: 14px;
+}
+
+#input:focus {
+    border: 1px solid #7aa2f7;
+    outline: none;
+}
+
+#inner-box {
+    margin: 4px 16px 16px 16px;
+    border: none;
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 0px;
+    border: none;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+}
+
+#text {
+    margin: 6px;
+    border: none;
+    color: #c0caf5;
+}
+
+#entry {
+    border: none;
+    border-radius: 8px;
+    padding: 6px 10px;
+    margin: 2px 0px;
+    transition: all 0.2s ease;
+}
+
+#entry:hover {
+    background-color: rgba(122, 162, 247, 0.15);
+}
+
+#entry:selected {
+    background-color: #7aa2f7;
+    color: #1a1b26;
+}
+
+#entry:selected #text {
+    color: #1a1b26;
+    font-weight: bold;
+}
+
+#img {
+    margin-right: 12px;
+    background-color: transparent;
+}
