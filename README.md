@@ -29,15 +29,15 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 | `SUPER` or `SUPER + Space` or `SUPER + R` | **Toggle App Launcher** (Wofi Spotlight) |
 | `SUPER + Q` | Open Terminal (`kitty`) |
 | `SUPER + E` | Open File Manager (`nautilus`) |
-| `SUPER + W` | Interactive **Wallpaper Picker** |
+| `SUPER + W` | Interactive **Wallpaper Picker** (press again to cancel) |
 | `SUPER + Shift + W` | Cycle **Next Wallpaper** |
-| `Print` (PrtSc) | **Area Screenshot** to clipboard |
+| `SUPER + N` | Interactive **Wi-Fi / Network Dropdown** (or click Network pill on Waybar) |
+| `SUPER + B` | **Glass / Blur Theme Switcher** (`Liquid`, `Frosted`, `Crystal`, `Deep`) |
+| `Print` (PrtSc) | **Area Screenshot** to clipboard (press again or Escape to cancel) |
 
 ### 🪟 Window Management
 | Shortcut | Action |
 |---|---|
-| `ALT + Tab` | **Cycle through active windows** (App switcher) |
-| `ALT + Shift + Tab` | Cycle windows backwards |
 | `SUPER + Tab` | **Visual window switcher** (Rofi window modal) |
 | `SUPER + C` | Close active window |
 | `SUPER + M` | **Maximize window** (keeps top status bar) |
@@ -51,6 +51,8 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 ### 🌐 Workspaces & Navigation
 | Shortcut | Action |
 |---|---|
+| `ALT + Tab` | **Cycle forward between workspaces** |
+| `ALT + Shift + Tab` | **Cycle backward between workspaces** |
 | `SUPER + 1-9` | Switch to Workspace 1-9 |
 | `SUPER + Shift + 1-9` | Move active window to Workspace 1-9 |
 | `SUPER + Scroll Up / Down` | Scroll through workspaces |
