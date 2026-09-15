@@ -66,15 +66,16 @@
     },
 
     "network": {
-        "format-wifi": "  {essid}",
-        "format-ethernet": "  {ipaddr}",
+        "interval": 2,
+        "format-wifi": "  {essid}   {bandwidthDownBytes}   {bandwidthUpBytes}",
+        "format-ethernet": "  {ipaddr}   {bandwidthDownBytes}   {bandwidthUpBytes}",
         "format-linked": "  (No IP)",
         "format-disconnected": "⚠ Disconnected",
-        "tooltip-format": "{ifname} via {gwaddr}",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format": "{ifname} via {gwaddr}\n Down: {bandwidthDownBytes} |  Up: {bandwidthUpBytes}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n Down: {bandwidthDownBytes} |  Up: {bandwidthUpBytes}",
+        "tooltip-format-ethernet": "{ifname}\n Down: {bandwidthDownBytes} |  Up: {bandwidthUpBytes}",
         "tooltip-format-disconnected": "Disconnected",
-        "max-length": 25
+        "max-length": 45
     },
 
     "pulseaudio": {
