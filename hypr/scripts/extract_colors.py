@@ -50,11 +50,14 @@ def get_palette(image_path):
     bg_g = max(16, min(52, int(ag * 0.20 + 16 * 0.80)))
     bg_b = max(20, min(58, int(ab * 0.20 + 24 * 0.80)))
 
+    wofi_op = float(os.environ.get("GLASS_WOFI_OPACITY", "0.48"))
+    waybar_op = float(os.environ.get("GLASS_WAYBAR_OPACITY", "0.60"))
+
     accent_hex = f"#{accent_rgb[0]:02x}{accent_rgb[1]:02x}{accent_rgb[2]:02x}"
     accent_alpha = f"rgba({accent_rgb[0]}, {accent_rgb[1]}, {accent_rgb[2]}, 0.20)"
     border_accent = f"rgba({accent_rgb[0]}, {accent_rgb[1]}, {accent_rgb[2]}, 0.60)"
-    bg_waybar = f"rgba({bg_r}, {bg_g}, {bg_b}, 0.82)"
-    bg_wofi = f"rgba({bg_r}, {bg_g}, {bg_b}, 0.68)"
+    bg_waybar = f"rgba({bg_r}, {bg_g}, {bg_b}, {waybar_op:.2f})"
+    bg_wofi = f"rgba({bg_r}, {bg_g}, {bg_b}, {wofi_op:.2f})"
 
     return {
         "accent_hex": accent_hex,
