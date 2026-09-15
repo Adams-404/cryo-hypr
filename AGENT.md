@@ -1,10 +1,10 @@
-# 🤖 AGENT INSTRUCTIONS: cryo-hypr Maintenance & Development
+# AGENT INSTRUCTIONS: cryo-hypr Maintenance & Development
 
 This file serves as a mandatory guideline for any AI assistant or autonomous agent working on the `cryo-hypr` dotfiles repository.
 
 ---
 
-## 📌 1. The Documentation Mandate (CRITICAL)
+## 1. The Documentation Mandate (CRITICAL)
 
 > **Whenever any configuration, keybinding, gesture, script, style, or module is added, modified, or removed, you MUST immediately update the documentation (`README.md`, installation script, and cheat sheets) to match.**
 
@@ -16,7 +16,7 @@ This file serves as a mandatory guideline for any AI assistant or autonomous age
 
 ---
 
-## 🏛️ 2. Architecture & Single Source of Truth
+## 2. Architecture & Single Source of Truth
 
 - All configuration files belong in `~/dotfiles`:
   - `~/dotfiles/hypr/` -> symlinked to `~/.config/hypr`
@@ -28,7 +28,7 @@ This file serves as a mandatory guideline for any AI assistant or autonomous age
 
 ---
 
-## 🧪 3. Verification & Zero-Error Policy
+## 3. Verification & Zero-Error Policy
 
 Before considering any task complete:
 1. Reload Hyprland: `hyprctl reload`
@@ -38,7 +38,7 @@ Before considering any task complete:
 
 ---
 
-## 📦 4. Git & Commit Workflow
+## 4. Git & Commit Workflow
 
 - Keep commits granular, clean, and feature-based following Conventional Commits:
   - `feat(...)`: new functionality, keybinds, or modules

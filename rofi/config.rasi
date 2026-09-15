@@ -2,7 +2,7 @@ configuration {
     modi: "window,drun,run";
     show-icons: true;
     terminal: "kitty";
-    font: "JetBrains Mono 12";
+    font: "JetBrains Mono 10.5";
     drun-display-format: "{icon} {name}";
     window-format: "{w}  ·  {c}  ·  {t}";
 }
@@ -53,7 +53,7 @@ inputbar {
 
 prompt {
     text-color: @accent;
-    font: "JetBrains Mono Bold 12";
+    font: "JetBrains Mono 10.5";
 }
 
 entry {
@@ -95,5 +95,5 @@ element selected {
 
 element selected element-text {
     text-color: #ffffff;
-    font: "JetBrains Mono Bold 12";
+    font: "JetBrains Mono 10.5";
 }

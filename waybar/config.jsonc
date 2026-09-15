@@ -57,7 +57,7 @@
         "format-wifi": "   {bandwidthDownBytes}   {bandwidthUpBytes}",
         "format-ethernet": "   {bandwidthDownBytes}   {bandwidthUpBytes}",
         "format-linked": "  (No IP)",
-        "format-disconnected": "⚠ Disconnected",
+        "format-disconnected": "  Disconnected",
         "tooltip-format": "SSID: {essid} ({signalStrength}%)\nIP: {ipaddr}\nInterface: {ifname}\n Down: {bandwidthDownBytes} |  Up: {bandwidthUpBytes}",
         "tooltip-format-wifi": "SSID: {essid} ({signalStrength}%)\nIP: {ipaddr}\nInterface: {ifname}\n Down: {bandwidthDownBytes} |  Up: {bandwidthUpBytes}",
         "tooltip-format-ethernet": "{ifname} ({ipaddr})\n Down: {bandwidthDownBytes} |  Up: {bandwidthUpBytes}",

@@ -128,8 +128,8 @@ class WallpaperPicker(Gtk.Window):
             border: 1px solid rgba(255, 255, 255, 0.14);
             border-radius: 12px;
             color: #ffffff;
-            font-size: 13px;
-            padding: 9px 14px;
+            font-size: 11.5px;
+            padding: 8px 12px;
         }}
         #search-entry:focus {{
             border: 1px solid {accent_hex};
@@ -142,7 +142,7 @@ class WallpaperPicker(Gtk.Window):
         #wall-list row {{
             background: transparent;
             border-radius: 12px;
-            padding: 6px 8px;
+            padding: 5px 8px;
             margin: 2px 4px;
             border: 1px solid transparent;
             transition: all 120ms ease;
@@ -157,12 +157,12 @@ class WallpaperPicker(Gtk.Window):
         }}
         #row-title {{
             color: #ffffff;
-            font-size: 13px;
+            font-size: 11.5px;
             font-weight: 600;
         }}
         #row-sub {{
             color: #8a92b2;
-            font-size: 11px;
+            font-size: 10px;
         }}
         #preview-box {{
             background-color: rgba(0, 0, 0, 0.35);
@@ -173,31 +173,31 @@ class WallpaperPicker(Gtk.Window):
         }}
         #preview-title {{
             color: #ffffff;
-            font-size: 17px;
+            font-size: 14px;
             font-weight: 700;
         }}
         #preview-badge {{
             color: #c0caf5;
-            font-size: 12px;
+            font-size: 10.5px;
             background-color: rgba(255, 255, 255, 0.08);
             border-radius: 8px;
-            padding: 4px 10px;
+            padding: 3px 8px;
         }}
         #live-pill {{
             color: {accent_hex};
-            font-size: 12px;
+            font-size: 10.5px;
             font-weight: 600;
             background-color: {accent_alpha};
             border-radius: 8px;
-            padding: 4px 10px;
+            padding: 3px 8px;
         }}
         #apply-button {{
             background-color: {accent_hex};
             color: #12141d;
-            font-size: 13px;
+            font-size: 11.5px;
             font-weight: 700;
             border-radius: 10px;
-            padding: 8px 18px;
+            padding: 7px 16px;
             border: none;
             box-shadow: 0 4px 14px {accent_alpha};
         }}
@@ -206,7 +206,7 @@ class WallpaperPicker(Gtk.Window):
         }}
         #hint-label {{
             color: #7a829e;
-            font-size: 11px;
+            font-size: 10px;
         }}
         """
         provider = Gtk.CssProvider()
@@ -258,7 +258,7 @@ class WallpaperPicker(Gtk.Window):
             self.row_widgets.append((wall_path, row))
 
         # Bottom Count Label
-        self.count_label = Gtk.Label(label=f"🖼️ {len(self.wallpapers)} Wallpapers Available")
+        self.count_label = Gtk.Label(label=f"  {len(self.wallpapers)} Wallpapers Available")
         self.count_label.set_name("hint-label")
         self.count_label.set_halign(Gtk.Align.START)
         left_box.pack_start(self.count_label, False, False, 0)
@@ -296,7 +296,7 @@ class WallpaperPicker(Gtk.Window):
         right_box.pack_start(bottom_box, False, False, 0)
 
         live_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
-        live_pill = Gtk.Label(label="👁️  Live Desktop Preview")
+        live_pill = Gtk.Label(label="  Live Desktop Preview")
         live_pill.set_name("live-pill")
         live_box.pack_start(live_pill, False, False, 0)
 
@@ -445,7 +445,7 @@ class WallpaperPicker(Gtk.Window):
 
             # Notification
             name = os.path.basename(wall)
-            subprocess.Popen(["notify-send", "Wallpaper Set", f"✨ {name}"])
+            subprocess.Popen(["notify-send", "Wallpaper Set", name])
 
             # Reload Waybar with new dynamic palette
             subprocess.Popen(["bash", "-c", "sleep 0.3; killall waybar 2>/dev/null; sleep 0.2; waybar &"])

@@ -9,5 +9,5 @@ fi
 GEOM=$(slurp 2>/dev/null)
 if [ -n "$GEOM" ]; then
     grim -g "$GEOM" - | wl-copy
-    notify-send -t 1500 "Screenshot" "📸 Area copied to clipboard"
+    notify-send -t 1500 "Screenshot" "Area copied to clipboard"
 fi

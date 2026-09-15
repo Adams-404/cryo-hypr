@@ -39,7 +39,7 @@ NETWORKS=$(nmcli -t -f IN-USE,SSID,SIGNAL,SECURITY dev wifi list 2>/dev/null | w
     fi
 done | awk '!seen[$0]++')
 
-MENU_HEADER="󰖪  Turn Wi-Fi OFF\n  Open Network Connections\n🔄 Rescan Networks\n---"
+MENU_HEADER="󰖪  Turn Wi-Fi OFF\n  Open Network Connections\n  Rescan Networks\n---"
 FULL_MENU=$(printf "%b\n%s" "$MENU_HEADER" "$NETWORKS")
 
 CHOSEN=$(echo "$FULL_MENU" | wofi --dmenu --prompt "  Select Network..." --width 450 --height 380)

@@ -1,42 +1,43 @@
-# ❄️ cryo-hypr
+# cryo-hypr
 
 An aesthetic, modern, and fluid **Hyprland** desktop environment configured for Fedora and Linux. Built with a macOS-inspired experience: natural gestures, smooth window animations, dynamic wallpaper-extracted color theming, and a floating glassmorphism status bar.
 
 ---
 
-## ✨ Features
+## Features
 
 - **Compositor**: [Hyprland](https://hyprland.org) with native Lua configuration (`hyprland.lua`).
 - **Dynamic Theming**: Automatically extracts color palettes from your active wallpaper to theme Waybar and Wofi.
-- **Status Bar**: [Waybar](https://github.com/Alexays/Waybar) with floating pill modules, live **download/upload network bandwidth**, battery health, volume, brightness, clock, and system tray.
+- **Status Bar**: [Waybar](https://github.com/Alexays/Waybar) with floating pill modules, live **download/upload network bandwidth**, battery health, volume, brightness, clock, settings, and system tray.
 - **Spotlight Launcher**: [Wofi](https://hg.sr.ht/~scoopta/wofi) redesigned with a macOS Spotlight aesthetic: centered modal, border-only active highlights, no scrollbars, and background blur/dimming.
 - **macOS-like Gestures**:
   - **Natural 2-finger scrolling** and tap-to-click.
   - **3-Finger horizontal swipe** for fluid 1:1 workspace switching.
   - **4-Finger swipe up** to instantly switch wallpapers with animated transitions.
 - **Window Controls**: Dedicated Maximize (`SUPER + M`), True Fullscreen (`SUPER + F`), and Minimize to Magic Tray (`SUPER + H` / `SUPER + S`).
-- **Wallpaper Engine**: [Awww](https://github.com/the-lost-attic/awww) with animated wipe and grow transitions.
+- **Wallpaper Chooser**: Custom GTK3 Layer-Shell wallpaper picker with two-column layout, real-time right-panel image preview, and live desktop preview sync.
+- **Global Font Scaling**: Dynamic font and scaling controller (`fontsize.sh`) to easily adjust UI size across GTK, Waybar, Wofi, and notifications.
 - **Notifications**: [Mako](https://github.com/emersion/mako) styled to match the dark glass aesthetic.
 - **Snipping Tool**: Area screenshot straight to clipboard via the physical **`Print`** (PrtSc) key.
 
 ---
 
-## ⌨️ Keybindings Cheat Sheet
+## Keybindings Cheat Sheet
 
-### 🚀 Applications & Launcher
+### Applications & Launcher
 | Shortcut | Action |
 |---|---|
 | `SUPER` or `SUPER + Space` or `SUPER + R` | **Toggle App Launcher** (Wofi Spotlight) |
-| `SUPER + I` or `SUPER + ,` | **Settings & Preferences Hub** (GNOME Settings, Glass Blur, Wallpaper, Wi-Fi, Audio, Displays) |
+| `SUPER + I` or `SUPER + ,` | **Settings & Preferences Hub** (System Settings, Font Scaling, Glass Blur, Wallpaper, Wi-Fi, Audio, Displays) |
 | `SUPER + Q` | Open Terminal (`kitty`) |
 | `SUPER + E` | Open File Manager (`nautilus`) |
 | `SUPER + W` | Interactive **Wallpaper Picker** (live preview card on the right, live background sync, press again to cancel) |
 | `SUPER + Shift + W` | Cycle **Next Wallpaper** |
 | `SUPER + N` | Interactive **Wi-Fi / Network Dropdown** (or click Network pill on Waybar) |
-| `SUPER + B` | **Glass / Blur Theme Switcher** (`Liquid`, `Frosted`, `Crystal`, `Deep`) |
+| `SUPER + B` | **Glass / Blur Theme Switcher** (`Liquid`, `Frosted`, `Crystal`, `Deep`, `Off`) |
 | `Print` (PrtSc) | **Area Screenshot** to clipboard (press again or Escape to cancel) |
 
-### 🪟 Window Management
+### Window Management
 | Shortcut | Action |
 |---|---|
 | `SUPER + Tab` | **Visual window switcher** (Rofi window modal) |
@@ -49,7 +50,7 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 | `SUPER + Mouse Drag` | **Smart Drag Window**: Drag across screen, drag to left/right edge to shift workspaces, or drop onto top status bar workspace buttons (1-5)! |
 | `SUPER + Shift + Left / Right` | Move active window to previous / next workspace |
 
-### 🌐 Workspaces & Navigation
+### Workspaces & Navigation
 | Shortcut | Action |
 |---|---|
 | `ALT + Tab` | **Cycle forward between workspaces** |
@@ -63,15 +64,15 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 
 ---
 
-## 👆 Touchpad Gestures
+## Touchpad Gestures
 
 * **2-Finger Scroll**: Natural scrolling (content moves with your fingers, macOS style).
 * **3-Finger Swipe (Left / Right)**: Fluid, animated 1:1 workspace switching. Continuous scrolling enabled—swipe through existing workspaces or seamlessly into a **fresh new workspace** if no apps are there!
-* **Wallpaper Switching**: Press `SUPER + W` to select from an interactive picker, or `SUPER + Shift + W` for the next wallpaper.
+* **Wallpaper Switching**: Press `SUPER + W` to select from the live preview picker, or `SUPER + Shift + W` for the next wallpaper.
 
 ---
 
-## 🚀 Quick Installation
+## Quick Installation
 
 Clone this repository and run the automated installer:
 
@@ -89,7 +90,7 @@ The installer will:
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 ~/dotfiles/
@@ -98,11 +99,12 @@ The installer will:
 │   └── scripts/
 │       ├── autostart.sh        # Boot lifecycle daemon manager
 │       ├── settings.sh         # Unified Settings & Preferences hub
+│       ├── fontsize.sh         # Global font scaling controller
 │       ├── glass.sh            # Glassmorphism & blur level switcher
 │       ├── wifi.sh             # Interactive Wi-Fi manager
 │       ├── screenshot.sh       # PrtSc area screenshot with cancel toggle
 │       ├── menu.sh             # Toggleable launcher script
-│       ├── wallpaper.sh        # Wallpaper rotator and interactive picker
+│       ├── wallpaper.sh        # Wallpaper rotator and picker launcher
 │       ├── wallpaper_picker.py # Modern GTK3 layer-shell wallpaper chooser with preview
 │       └── extract_colors.py   # Wallpaper color extractor (PIL)
 ├── waybar/
@@ -124,10 +126,10 @@ The installer will:
 
 ---
 
-## 🖼️ Adding Custom Wallpapers
+## Adding Custom Wallpapers
 
 Simply drop any `.png`, `.jpg`, or `.jpeg` images into your `~/Pictures/Wallpapers` folder:
 ```bash
 cp your_image.png ~/Pictures/Wallpapers/
 ```
-Press **`SUPER + W`** to pick it from the launcher, or swipe **4 fingers up** on your trackpad to cycle through your wallpapers!
+Press **`SUPER + W`** to pick it from the interactive live preview chooser, or swipe **4 fingers up** on your trackpad to cycle through your wallpapers!

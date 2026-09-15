@@ -15,6 +15,9 @@ case "$1" in
     glass|blur)
         exec "$HOME/.config/hypr/scripts/glass.sh" menu
         ;;
+    font|fontsize|scale)
+        exec "$HOME/.config/hypr/scripts/fontsize.sh" menu
+        ;;
     wifi|network)
         exec "$HOME/.config/hypr/scripts/wifi.sh"
         ;;
@@ -25,15 +28,18 @@ case "$1" in
         exec pavucontrol &
         ;;
     *)
-        OPTIONS="⚙️   All System Settings (GNOME Control Center)\n🔮  Glass & Blur Style (Liquid, Frosted, Crystal, Deep)\n🖼️   Wallpaper & Colors (Dynamic Extraction)\n📶  Wi-Fi & Wireless Networks\n🌐  Network Connections Editor\n🔊  Audio Mixer & Sound Devices\n🖥️   Displays & Screen Resolution\n󰂯  Bluetooth Devices\n🔋  Power & Battery Management\n󰌌   Keyboard & Shortcuts\n📖  Keybindings & Documentation (README)"
+        OPTIONS="   All System Settings (GNOME Control Center)\n   Font and Text Scaling (Reduce / Increase)\n   Glass and Blur Style (Liquid, Frosted, Crystal, Deep)\n   Wallpaper and Colors (Live Preview Chooser)\n   Wi-Fi Wireless Networks\n   Network Connections Editor\n   Audio Mixer and Sound Devices\n   Displays and Screen Resolution\n   Bluetooth Devices\n   Power and Battery Management\n   Keyboard and Shortcuts\n   Keybindings and Documentation (README)"
 
-        CHOSEN=$(printf "%b" "$OPTIONS" | wofi --dmenu --prompt " Settings & Preferences..." --width 480 --height 430)
+        CHOSEN=$(printf "%b" "$OPTIONS" | wofi --dmenu --prompt "Settings & Preferences..." --width 480 --height 430)
 
         case "$CHOSEN" in
             *"All System Settings"*)
                 env XDG_CURRENT_DESKTOP=GNOME gnome-control-center &
                 ;;
-            *"Glass & Blur"*)
+            *"Font and Text"*)
+                "$HOME/.config/hypr/scripts/fontsize.sh" menu &
+                ;;
+            *"Glass and Blur"*)
                 "$HOME/.config/hypr/scripts/glass.sh" menu &
                 ;;
             *"Wallpaper"*)
