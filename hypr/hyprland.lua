@@ -231,15 +231,23 @@ hl.config({
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
 
         touchpad = {
-            natural_scroll = false,
+            natural_scroll       = true,
+            tap_to_click         = true,
+            clickfinger_behavior = true,
+            tap_and_drag         = true,
+            scroll_factor        = 0.85,
         },
     },
-})
 
-hl.gesture({
-    fingers = 3,
-    direction = "horizontal",
-    action = "workspace"
+    gestures = {
+        workspace_swipe                    = true,
+        workspace_swipe_fingers            = 3,
+        workspace_swipe_distance           = 250,
+        workspace_swipe_invert             = true,
+        workspace_swipe_min_speed_to_force = 15,
+        workspace_swipe_cancel_ratio       = 0.4,
+        workspace_swipe_create_new         = true,
+    },
 })
 
 -- Example per-device config
@@ -260,7 +268,18 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+
+-- Maximize and Fullscreen
+hl.bind(mainMod .. " + M", hl.dsp.window.fullscreen(1)) -- Maximize (keeps bar)
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen(0)) -- True Fullscreen
+
+-- Minimize (hide window to magic workspace) and restore
+hl.bind(mainMod .. " + H", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
+
+-- Exit session
+hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
