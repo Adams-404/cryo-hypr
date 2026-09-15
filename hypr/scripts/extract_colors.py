@@ -43,23 +43,18 @@ def get_palette(image_path):
     ar, ag, ab = colorsys.hsv_to_rgb(h, s, v)
     accent_rgb = (int(ar * 255), int(ag * 255), int(ab * 255))
 
-    # Base dark tone derived from wallpaper
-    dark_tones = [c for c in color_data if c["v"] < 0.3]
-    if dark_tones:
-        dark_tones.sort(key=lambda x: x["count"], reverse=True)
-        dr, dg, db = dark_tones[0]["rgb"]
-        # Blend slightly with dark slate for readability
-        bg_r = max(14, min(36, int(dr * 0.4 + 16 * 0.6)))
-        bg_g = max(16, min(40, int(dg * 0.4 + 18 * 0.6)))
-        bg_b = max(24, min(52, int(db * 0.4 + 28 * 0.6)))
-    else:
-        bg_r, bg_g, bg_b = 20, 22, 32
+    # Derive a rich wallpaper-tinted frosted glass acrylic tone
+    # Blending the wallpaper's accent hue with deep slate creates an authentic tinted acrylic glass
+    ar, ag, ab = accent_rgb
+    bg_r = max(16, min(52, int(ar * 0.20 + 14 * 0.80)))
+    bg_g = max(16, min(52, int(ag * 0.20 + 16 * 0.80)))
+    bg_b = max(20, min(58, int(ab * 0.20 + 24 * 0.80)))
 
     accent_hex = f"#{accent_rgb[0]:02x}{accent_rgb[1]:02x}{accent_rgb[2]:02x}"
-    accent_alpha = f"rgba({accent_rgb[0]}, {accent_rgb[1]}, {accent_rgb[2]}, 0.16)"
-    border_accent = f"rgba({accent_rgb[0]}, {accent_rgb[1]}, {accent_rgb[2]}, 0.55)"
+    accent_alpha = f"rgba({accent_rgb[0]}, {accent_rgb[1]}, {accent_rgb[2]}, 0.20)"
+    border_accent = f"rgba({accent_rgb[0]}, {accent_rgb[1]}, {accent_rgb[2]}, 0.60)"
     bg_waybar = f"rgba({bg_r}, {bg_g}, {bg_b}, 0.82)"
-    bg_wofi = f"rgba({bg_r}, {bg_g}, {bg_b}, 0.72)"
+    bg_wofi = f"rgba({bg_r}, {bg_g}, {bg_b}, 0.68)"
 
     return {
         "accent_hex": accent_hex,
