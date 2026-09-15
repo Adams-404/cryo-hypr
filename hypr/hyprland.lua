@@ -37,7 +37,7 @@ hl.monitor({
 -- Set programs that you use
 local terminal    = "kitty"
 local fileManager = "nautilus"
-local menu        = "wofi --show drun"
+local menu        = os.getenv("HOME") .. "/.config/hypr/scripts/menu.sh"
 
 
 -------------------
