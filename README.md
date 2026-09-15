@@ -17,7 +17,7 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 - **Window Controls**: Dedicated Maximize (`SUPER + M`), True Fullscreen (`SUPER + F`), and Minimize to Magic Tray (`SUPER + H` / `SUPER + S`).
 - **Wallpaper Engine**: [Awww](https://github.com/the-lost-attic/awww) with animated wipe and grow transitions.
 - **Notifications**: [Mako](https://github.com/emersion/mako) styled to match the dark glass aesthetic.
-- **Snipping Tool**: Area screenshot straight to clipboard via `SUPER + Shift + S`.
+- **Snipping Tool**: Area screenshot straight to clipboard via the physical **`Print`** (PrtSc) key.
 
 ---
 
@@ -31,7 +31,7 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 | `SUPER + E` | Open File Manager (`nautilus`) |
 | `SUPER + W` | Interactive **Wallpaper Picker** |
 | `SUPER + Shift + W` | Cycle **Next Wallpaper** |
-| `SUPER + Shift + S` | **Area Screenshot** to clipboard |
+| `Print` (PrtSc) | **Area Screenshot** to clipboard |
 
 ### 🪟 Window Management
 | Shortcut | Action |
@@ -42,18 +42,18 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 | `SUPER + C` | Close active window |
 | `SUPER + M` | **Maximize window** (keeps top status bar) |
 | `SUPER + F` | **True Fullscreen** |
-| `SUPER + H` | **Minimize / Hide window** (sends to magic tray) |
-| `SUPER + S` | **Show / Toggle Minimized tray** |
 | `SUPER + V` | Toggle floating mode |
 | `SUPER + J` | Toggle split layout |
 | `SUPER + Arrow Keys` | Move window focus |
-| `SUPER + Mouse Drag` | Move window (Left Click) / Resize (Right Click) |
+| `SUPER + Mouse Drag` | Move window across workspaces (Left Click) / Resize (Right Click) |
+| `SUPER + Shift + Left / Right` | Move active window to previous / next workspace |
 
 ### 🌐 Workspaces & Navigation
 | Shortcut | Action |
 |---|---|
 | `SUPER + 1-9` | Switch to Workspace 1-9 |
 | `SUPER + Shift + 1-9` | Move active window to Workspace 1-9 |
+| `SUPER + Scroll Up / Down` | Scroll through workspaces |
 | `SUPER + Escape` | Exit session / Power menu |
 
 ---
