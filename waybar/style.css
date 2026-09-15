@@ -1,0 +1,168 @@
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: "JetBrains Mono", "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+/* Base pill styling for all modules */
+#workspaces,
+#window,
+#clock,
+#pulseaudio,
+#backlight,
+#network,
+#battery,
+#tray,
+#custom-power {
+    background: rgba(22, 24, 35, 0.82);
+    color: #c0caf5;
+    padding: 3px 14px;
+    margin: 4px 3px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Left: Workspaces */
+#workspaces {
+    padding: 2px 5px;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    margin: 2px 2px;
+    color: #565f89;
+    border-radius: 8px;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #bb9af7;
+}
+
+#workspaces button.active {
+    background: #7aa2f7;
+    color: #1a1b26;
+    font-weight: 900;
+}
+
+#workspaces button.urgent {
+    background: #f7768e;
+    color: #1a1b26;
+}
+
+/* Active window title */
+#window {
+    color: #a9b1d6;
+    font-weight: 500;
+    font-size: 12px;
+    padding: 3px 12px;
+}
+
+/* Center: Clock */
+#clock {
+    color: #7dcfff;
+    background: rgba(22, 24, 35, 0.9);
+    border: 1px solid rgba(125, 207, 255, 0.22);
+    font-weight: 800;
+    padding: 3px 16px;
+}
+
+/* Right: Modules with color accents */
+#pulseaudio {
+    color: #bb9af7;
+}
+
+#pulseaudio.muted {
+    color: #f7768e;
+}
+
+#pulseaudio:hover {
+    background: rgba(187, 154, 247, 0.18);
+}
+
+#backlight {
+    color: #e0af68;
+}
+
+#backlight:hover {
+    background: rgba(224, 175, 104, 0.18);
+}
+
+#network {
+    color: #73daca;
+}
+
+#network.disconnected {
+    color: #f7768e;
+}
+
+#network:hover {
+    background: rgba(115, 218, 202, 0.18);
+}
+
+#battery {
+    color: #9ece6a;
+}
+
+#battery.charging {
+    color: #7aa2f7;
+}
+
+#battery.warning:not(.charging) {
+    color: #e0af68;
+}
+
+#battery.critical:not(.charging) {
+    color: #f7768e;
+    animation-name: blink;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery:hover {
+    background: rgba(158, 206, 106, 0.18);
+}
+
+#custom-power {
+    color: #f7768e;
+    padding: 3px 12px;
+    margin-right: 6px;
+    border: 1px solid rgba(247, 118, 142, 0.25);
+}
+
+#custom-power:hover {
+    background: #f7768e;
+    color: #1a1b26;
+}
+
+#tray {
+    padding: 0 10px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+@keyframes blink {
+    to {
+        background-color: #f7768e;
+        color: #1a1b26;
+    }
+}
