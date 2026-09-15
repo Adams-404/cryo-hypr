@@ -124,9 +124,9 @@ hl.config({
 
         blur = {
             enabled   = true,
-            size      = 3,
-            passes    = 1,
-            vibrancy  = 0.1696,
+            size      = 8,
+            passes    = 3,
+            vibrancy  = 0.25,
         },
     },
 
@@ -330,6 +330,40 @@ hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+-- Smart drag-to-workspace: Dragging window to left edge or dropping onto status bar workspace buttons
+hl.bind(mainMod .. " + mouse:272", function()
+    local pos = hl.get_cursor_pos()
+    local active_ws = hl.get_active_workspace()
+    local current_ws = (active_ws and active_ws.id) or 1
+    local mon = hl.get_active_monitor()
+    local mon_w = (mon and mon.scale and mon.scale > 0) and (mon.width / mon.scale) or 1280
+    local target_ws = nil
+
+    -- 1. Dropped on the top status bar over the workspace buttons pill (y <= 58, x between 10 and 190)
+    if pos.y >= 0 and pos.y <= 58 and pos.x >= 10 and pos.x <= 190 then
+        local ws_idx = math.floor((pos.x - 14) / 32) + 1
+        if ws_idx >= 1 and ws_idx <= 5 then
+            target_ws = ws_idx
+        end
+    -- 2. Dragged to the LEFT screen edge -> send to next workspace (ws + 1)
+    elseif pos.x <= 30 and pos.y > 58 then
+        target_ws = current_ws + 1
+    -- 3. Dragged to the RIGHT screen edge -> send to previous workspace (ws - 1)
+    elseif pos.x >= (mon_w - 30) and pos.y > 58 then
+        target_ws = math.max(1, current_ws - 1)
+    end
+
+    if target_ws and target_ws ~= current_ws then
+        local win = hl.get_active_window()
+        if win and win.address then
+            hl.dispatch(hl.dsp.window.move({ address = win.address, workspace = target_ws }))
+        else
+            hl.dispatch(hl.dsp.window.move({ workspace = target_ws }))
+        end
+        hl.dispatch(hl.dsp.focus({ workspace = target_ws }))
+    end
+end, { mouse = true, release = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
