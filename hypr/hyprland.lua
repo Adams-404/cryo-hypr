@@ -123,10 +123,14 @@ hl.config({
         },
 
         blur = {
-            enabled   = true,
-            size      = 8,
-            passes    = 3,
-            vibrancy  = 0.25,
+            enabled    = true,
+            size       = 5,
+            passes     = 2,
+            vibrancy   = 0.45,
+            noise      = 0.012,
+            contrast   = 1.15,
+            brightness = 1.0,
+            popups     = true,
         },
     },
 
@@ -272,10 +276,15 @@ hl.device({
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
--- App Switcher (Alt+Tab to cycle windows, Super+Tab for visual window switcher)
-hl.bind("ALT + Tab", hl.dsp.window.cycle_next())
-hl.bind("ALT + SHIFT + Tab", hl.dsp.window.cycle_next({ prev = true }))
+-- App & Workspace Switcher:
+-- Alt+Tab smoothly switches between workspaces; Super+Tab for visual window switcher
+hl.bind("ALT + Tab", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind("ALT + SHIFT + Tab", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd("rofi -show window"))
+
+-- Quick Wi-Fi Network & Glass Theme Switchers
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/wifi.sh"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/glass.sh menu"))
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
@@ -295,8 +304,8 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + SUPER_L", hl.dsp.exec_cmd(menu), { release = true })
 
--- Screenshot: Dedicated physical PrtSc (Print) key
-hl.bind("Print", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"))
+-- Screenshot: Dedicated physical PrtSc (Print) key (press again or Escape to cancel)
+hl.bind("Print", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/screenshot.sh"))
 
 -- Wallpaper switcher (Super+W to select, Super+Shift+W for next)
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/wallpaper.sh select"))

@@ -33,6 +33,10 @@ case "$1" in
         set_wallpaper "$WALL"
         ;;
     select|choose)
+        if pgrep -x "wofi" >/dev/null; then
+            killall wofi
+            exit 0
+        fi
         SELECTED=$(find "$WALLPAPER_DIR" -maxdepth 1 -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -exec basename {} \; | sort | wofi -dmenu -p "  Choose Wallpaper...")
         if [ -n "$SELECTED" ]; then
             set_wallpaper "$WALLPAPER_DIR/$SELECTED"
