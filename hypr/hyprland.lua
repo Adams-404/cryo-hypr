@@ -385,7 +385,7 @@ hl.layer_rule({
     match        = { namespace = "^wofi$" },
     blur         = true,
     dim_around   = true,
-    ignore_alpha = 0.2,
+    ignore_alpha = 0.05,
 })
 
 hl.layer_rule({

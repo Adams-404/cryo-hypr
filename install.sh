@@ -62,7 +62,7 @@ fi
 # 2. Backup existing configs if they are real directories (not symlinks)
 echo -e "${BLUE}-> Backing up existing configurations...${RESET}"
 mkdir -p "$BACKUP_DIR"
-for cfg in hypr waybar wofi mako; do
+for cfg in hypr waybar wofi mako rofi; do
     if [ -d "$HOME/.config/$cfg" ] && [ ! -L "$HOME/.config/$cfg" ]; then
         echo "Backing up ~/.config/$cfg -> $BACKUP_DIR/"
         mv "$HOME/.config/$cfg" "$BACKUP_DIR/"
@@ -78,6 +78,7 @@ ln -sf "$DOTFILES_DIR/hypr" "$HOME/.config/hypr"
 ln -sf "$DOTFILES_DIR/waybar" "$HOME/.config/waybar"
 ln -sf "$DOTFILES_DIR/wofi" "$HOME/.config/wofi"
 ln -sf "$DOTFILES_DIR/mako" "$HOME/.config/mako"
+ln -sf "$DOTFILES_DIR/rofi" "$HOME/.config/rofi"
 
 # 4. Set execution permissions on scripts
 echo -e "${BLUE}-> Setting script permissions...${RESET}"

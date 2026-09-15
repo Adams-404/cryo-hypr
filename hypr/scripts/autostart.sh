@@ -4,6 +4,9 @@
 killall waybar 2>/dev/null
 killall mako 2>/dev/null
 
+# Disable titlebar close, minimize, maximize buttons on GTK apps
+gsettings set org.gnome.desktop.wm.preferences button-layout "" 2>/dev/null || true
+
 # Select wallpaper
 WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 DEFAULT_WALL="$WALLPAPER_DIR/glowing-rings-5120x2880-24778.png"

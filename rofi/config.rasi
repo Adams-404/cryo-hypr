@@ -1,0 +1,99 @@
+configuration {
+    modi: "window,drun,run";
+    show-icons: true;
+    terminal: "kitty";
+    font: "JetBrains Mono 12";
+    drun-display-format: "{icon} {name}";
+    window-format: "{w}  ·  {c}  ·  {t}";
+}
+
+@theme "/dev/null"
+
+* {
+    bg: rgba(22, 24, 34, 0.94);
+    bg-alt: rgba(255, 255, 255, 0.06);
+    fg: #c0caf5;
+    fg-dim: #7a84a8;
+    accent: #7aa2f7;
+    accent-alt: rgba(122, 162, 247, 0.16);
+    border-col: rgba(122, 162, 247, 0.5);
+
+    background-color: transparent;
+    text-color: @fg;
+    margin: 0;
+    padding: 0;
+}
+
+window {
+    width: 620px;
+    height: 400px;
+    location: center;
+    anchor: center;
+    border: 1.5px;
+    border-color: @border-col;
+    border-radius: 18px;
+    background-color: @bg;
+    padding: 16px;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    spacing: 12px;
+}
+
+inputbar {
+    background-color: @bg-alt;
+    border: 1px;
+    border-color: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 10px 14px;
+    children: [ prompt, entry ];
+    spacing: 10px;
+}
+
+prompt {
+    text-color: @accent;
+    font: "JetBrains Mono Bold 12";
+}
+
+entry {
+    placeholder: "Switch window...";
+    placeholder-color: @fg-dim;
+    text-color: @fg;
+}
+
+listview {
+    columns: 1;
+    lines: 7;
+    cycle: true;
+    scrollbar: false;
+    spacing: 4px;
+}
+
+element {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1.5px;
+    border-color: transparent;
+    children: [ element-icon, element-text ];
+    spacing: 12px;
+}
+
+element-icon {
+    size: 24px;
+}
+
+element-text {
+    vertical-align: 0.5;
+    text-color: @fg;
+}
+
+element selected {
+    background-color: @accent-alt;
+    border-color: @accent;
+}
+
+element selected element-text {
+    text-color: #ffffff;
+    font: "JetBrains Mono Bold 12";
+}

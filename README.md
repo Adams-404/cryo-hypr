@@ -105,7 +105,10 @@ The installer will:
 │   └── colors.css              # Dynamic wallpaper palette
 ├── mako/
 │   └── config                  # Dark glass notification theme
+├── rofi/
+│   └── config.rasi             # Modern window switcher modal
 ├── install.sh                  # Automated multi-distro setup script
+├── AGENT.md                    # Mandatory AI maintenance guidelines
 └── README.md                   # Documentation & keybinding guide
 ```
 
