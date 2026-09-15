@@ -16,6 +16,8 @@ echo "-> Linking/copying configurations..."
 cp "$DOTFILES_DIR/hypr/hyprland.lua" "$HOME/.config/hypr/hyprland.lua"
 cp "$DOTFILES_DIR/hypr/scripts/autostart.sh" "$HOME/.config/hypr/scripts/autostart.sh"
 chmod +x "$HOME/.config/hypr/scripts/autostart.sh"
+cp "$DOTFILES_DIR/hypr/scripts/menu.sh" "$HOME/.config/hypr/scripts/menu.sh"
+chmod +x "$HOME/.config/hypr/scripts/menu.sh"
 
 cp "$DOTFILES_DIR/waybar/config.jsonc" "$HOME/.config/waybar/config.jsonc"
 cp "$DOTFILES_DIR/waybar/style.css" "$HOME/.config/waybar/style.css"
