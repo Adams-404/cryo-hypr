@@ -33,6 +33,8 @@ install_packages() {
             slurp \
             wl-clipboard \
             python3-pillow \
+            python3-gobject \
+            gtk-layer-shell \
             jetbrains-mono-fonts-all \
             fontawesome-6-free-fonts \
             fontawesome-6-brands-fonts
@@ -49,6 +51,8 @@ install_packages() {
             slurp \
             wl-clipboard \
             python-pillow \
+            python-gobject \
+            gtk-layer-shell \
             ttf-jetbrains-mono \
             ttf-font-awesome
     else

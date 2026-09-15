@@ -442,6 +442,14 @@ hl.layer_rule({
     ignore_alpha = 0.2,
 })
 
+hl.layer_rule({
+    name         = "blur-wallpaper-picker",
+    match        = { namespace = "^wallpaper-picker$" },
+    blur         = true,
+    dim_around   = true,
+    ignore_alpha = 0.05,
+})
+
 -- Hyprland-run windowrule
 hl.window_rule({
     name  = "move-hyprland-run",

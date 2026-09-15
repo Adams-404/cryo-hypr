@@ -30,7 +30,7 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 | `SUPER + I` or `SUPER + ,` | **Settings & Preferences Hub** (GNOME Settings, Glass Blur, Wallpaper, Wi-Fi, Audio, Displays) |
 | `SUPER + Q` | Open Terminal (`kitty`) |
 | `SUPER + E` | Open File Manager (`nautilus`) |
-| `SUPER + W` | Interactive **Wallpaper Picker** (press again to cancel) |
+| `SUPER + W` | Interactive **Wallpaper Picker** (live preview card on the right, live background sync, press again to cancel) |
 | `SUPER + Shift + W` | Cycle **Next Wallpaper** |
 | `SUPER + N` | Interactive **Wi-Fi / Network Dropdown** (or click Network pill on Waybar) |
 | `SUPER + B` | **Glass / Blur Theme Switcher** (`Liquid`, `Frosted`, `Crystal`, `Deep`) |
@@ -103,6 +103,7 @@ The installer will:
 │       ├── screenshot.sh       # PrtSc area screenshot with cancel toggle
 │       ├── menu.sh             # Toggleable launcher script
 │       ├── wallpaper.sh        # Wallpaper rotator and interactive picker
+│       ├── wallpaper_picker.py # Modern GTK3 layer-shell wallpaper chooser with preview
 │       └── extract_colors.py   # Wallpaper color extractor (PIL)
 ├── waybar/
 │   ├── config.jsonc            # Modular status bar layout & network speeds

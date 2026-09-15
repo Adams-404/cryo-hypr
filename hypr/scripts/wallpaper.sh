@@ -33,14 +33,12 @@ case "$1" in
         set_wallpaper "$WALL"
         ;;
     select|choose)
-        if pgrep -x "wofi" >/dev/null; then
-            killall wofi
+        # Toggle: If picker is already running, close it
+        if pgrep -f "wallpaper_picker.py" >/dev/null; then
+            killall -f "wallpaper_picker.py" 2>/dev/null
             exit 0
         fi
-        SELECTED=$(find "$WALLPAPER_DIR" -maxdepth 1 -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -exec basename {} \; | sort | wofi -dmenu -p "  Choose Wallpaper...")
-        if [ -n "$SELECTED" ]; then
-            set_wallpaper "$WALLPAPER_DIR/$SELECTED"
-        fi
+        python3 "$HOME/.config/hypr/scripts/wallpaper_picker.py"
         ;;
     *)
         "$0" next
