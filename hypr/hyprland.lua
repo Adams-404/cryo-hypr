@@ -245,6 +245,8 @@ hl.config({
         workspace_swipe_min_speed_to_force = 15,
         workspace_swipe_cancel_ratio       = 0.4,
         workspace_swipe_create_new         = true,
+        workspace_swipe_forever            = true,
+        workspace_swipe_use_r              = true,
     },
 })
 
@@ -267,6 +269,11 @@ hl.device({
 ---------------------
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+
+-- App Switcher (Alt+Tab to cycle windows, Super+Tab for visual window switcher)
+hl.bind("ALT + Tab", hl.dsp.window.cycle_next())
+hl.bind("ALT + SHIFT + Tab", hl.dsp.window.cycle_next({ prev = true }))
+hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd("rofi -show window"))
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))

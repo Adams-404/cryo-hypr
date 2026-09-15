@@ -36,6 +36,9 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 ### 🪟 Window Management
 | Shortcut | Action |
 |---|---|
+| `ALT + Tab` | **Cycle through active windows** (App switcher) |
+| `ALT + Shift + Tab` | Cycle windows backwards |
+| `SUPER + Tab` | **Visual window switcher** (Rofi window modal) |
 | `SUPER + C` | Close active window |
 | `SUPER + M` | **Maximize window** (keeps top status bar) |
 | `SUPER + F` | **True Fullscreen** |
@@ -57,9 +60,9 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 
 ## 👆 Touchpad Gestures
 
-* **2-Finger Scroll**: Natural scrolling (content moves with your fingers).
-* **3-Finger Swipe (Left / Right)**: Fluid, animated 1:1 workspace switching.
-* **4-Finger Swipe (Up)**: Randomly switch wallpaper with a smooth animated wipe and instant color scheme adaptation!
+* **2-Finger Scroll**: Natural scrolling (content moves with your fingers, macOS style).
+* **3-Finger Swipe (Left / Right)**: Fluid, animated 1:1 workspace switching. Continuous scrolling enabled—swipe through existing workspaces or seamlessly into a **fresh new workspace** if no apps are there!
+* **Wallpaper Switching**: Press `SUPER + W` to select from an interactive picker, or `SUPER + Shift + W` for the next wallpaper.
 
 ---
 
