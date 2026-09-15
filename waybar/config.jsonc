@@ -21,6 +21,7 @@
         "backlight",
         "battery",
         "tray",
+        "custom/settings",
         "custom/power"
     ],
 
@@ -98,6 +99,13 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+    },
+
+    "custom/settings": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Settings & Preferences (Super + I)",
+        "on-click": "$HOME/.config/hypr/scripts/settings.sh"
     },
 
     "custom/power": {

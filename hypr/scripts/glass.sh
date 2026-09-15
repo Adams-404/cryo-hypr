@@ -55,6 +55,10 @@ case "$1" in
         apply_preset "$1"
         ;;
     menu|select|"")
+        if pgrep -x "wofi" >/dev/null; then
+            killall wofi
+            exit 0
+        fi
         OPTIONS="💧 Liquid Glass (Clear, Glossy & Vibrant)\n❄️ Frosted Glass (Diffuse & Milky Matte)\n💎 Crystal Clear (Ultra-Light Translucency)\n🌑 Deep Obsidian (Dark Tinted Glass)\n🚫 Disable Blur"
         SELECTED=$(printf "%b" "$OPTIONS" | wofi --dmenu --prompt "🔮 Choose Glass Style..." --width 450 --height 300)
         case "$SELECTED" in

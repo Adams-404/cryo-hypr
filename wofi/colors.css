@@ -1,6 +1,6 @@
-@define-color bg_color rgba(52, 16, 27, 0.48);
-@define-color accent_color #f10a2a;
-@define-color accent_alpha rgba(241, 10, 42, 0.20);
-@define-color border_color rgba(241, 10, 42, 0.60);
+@define-color bg_color rgba(52, 39, 22, 0.48);
+@define-color accent_color #f78412;
+@define-color accent_alpha rgba(247, 132, 18, 0.20);
+@define-color border_color rgba(247, 132, 18, 0.60);
 @define-color text_color #e0e6fc;
 @define-color text_muted #8a92b2;

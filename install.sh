@@ -28,6 +28,7 @@ install_packages() {
             mako \
             brightnessctl \
             pavucontrol \
+            network-manager-applet \
             grim \
             slurp \
             wl-clipboard \
@@ -43,6 +44,7 @@ install_packages() {
             mako \
             brightnessctl \
             pavucontrol \
+            network-manager-applet \
             grim \
             slurp \
             wl-clipboard \

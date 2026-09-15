@@ -27,6 +27,7 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 | Shortcut | Action |
 |---|---|
 | `SUPER` or `SUPER + Space` or `SUPER + R` | **Toggle App Launcher** (Wofi Spotlight) |
+| `SUPER + I` or `SUPER + ,` | **Settings & Preferences Hub** (GNOME Settings, Glass Blur, Wallpaper, Wi-Fi, Audio, Displays) |
 | `SUPER + Q` | Open Terminal (`kitty`) |
 | `SUPER + E` | Open File Manager (`nautilus`) |
 | `SUPER + W` | Interactive **Wallpaper Picker** (press again to cancel) |
@@ -96,6 +97,10 @@ The installer will:
 │   ├── hyprland.lua            # Main Hyprland Lua configuration
 │   └── scripts/
 │       ├── autostart.sh        # Boot lifecycle daemon manager
+│       ├── settings.sh         # Unified Settings & Preferences hub
+│       ├── glass.sh            # Glassmorphism & blur level switcher
+│       ├── wifi.sh             # Interactive Wi-Fi manager
+│       ├── screenshot.sh       # PrtSc area screenshot with cancel toggle
 │       ├── menu.sh             # Toggleable launcher script
 │       ├── wallpaper.sh        # Wallpaper rotator and interactive picker
 │       └── extract_colors.py   # Wallpaper color extractor (PIL)

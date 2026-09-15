@@ -133,6 +133,16 @@ window#waybar.empty #window {
     color: #f7768e;
 }
 
+#custom-settings {
+    color: @accent_color;
+    padding: 3px 9px;
+    font-size: 13px;
+}
+
+#custom-settings:hover {
+    background: @accent_alpha;
+}
+
 #custom-power {
     color: #f7768e;
     border: 1px solid rgba(247, 118, 142, 0.4);

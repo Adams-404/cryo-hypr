@@ -282,6 +282,10 @@ hl.bind("ALT + Tab", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind("ALT + SHIFT + Tab", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd("rofi -show window"))
 
+-- Settings & Preferences Hub (Super+I or Super+,)
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/settings.sh"))
+hl.bind(mainMod .. " + comma", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/settings.sh"))
+
 -- Quick Wi-Fi Network & Glass Theme Switchers
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/wifi.sh"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/glass.sh menu"))
