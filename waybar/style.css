@@ -1,3 +1,5 @@
+@import url("colors.css");
+
 * {
     border: none;
     border-radius: 0px;
@@ -21,13 +23,13 @@ window#waybar {
 #battery,
 #tray,
 #custom-power {
-    background: rgba(22, 24, 35, 0.82);
-    color: #c0caf5;
+    background: @bg_color;
+    color: @text_color;
     padding: 3px 14px;
     margin: 4px 3px;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
+    border: 1px solid @border_color;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -39,19 +41,19 @@ window#waybar {
 #workspaces button {
     padding: 0 8px;
     margin: 2px 2px;
-    color: #565f89;
+    color: @text_muted;
     border-radius: 8px;
     font-size: 12px;
     transition: all 0.2s ease;
 }
 
 #workspaces button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #bb9af7;
+    background: @accent_alpha;
+    color: @accent_color;
 }
 
 #workspaces button.active {
-    background: #7aa2f7;
+    background: @accent_color;
     color: #1a1b26;
     font-weight: 900;
 }
@@ -63,7 +65,7 @@ window#waybar {
 
 /* Active window title */
 #window {
-    color: #a9b1d6;
+    color: @text_muted;
     font-weight: 500;
     font-size: 12px;
     padding: 3px 12px;
@@ -71,9 +73,9 @@ window#waybar {
 
 /* Center: Clock */
 #clock {
-    color: #7dcfff;
-    background: rgba(22, 24, 35, 0.9);
-    border: 1px solid rgba(125, 207, 255, 0.22);
+    color: @accent_color;
+    background: @bg_color;
+    border: 1px solid @border_color;
     font-weight: 800;
     padding: 3px 16px;
 }
@@ -92,11 +94,11 @@ window#waybar {
 }
 
 #backlight {
-    color: #e0af68;
+    color: @accent_color;
 }
 
 #backlight:hover {
-    background: rgba(224, 175, 104, 0.18);
+    background: @accent_alpha;
 }
 
 #network {
@@ -116,7 +118,7 @@ window#waybar {
 }
 
 #battery.charging {
-    color: #7aa2f7;
+    color: @accent_color;
 }
 
 #battery.warning:not(.charging) {
