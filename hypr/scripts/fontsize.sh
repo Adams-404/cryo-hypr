@@ -81,8 +81,6 @@ else: # default / normal
     mako_sz = "11"
     name = "Standard (100% / 11pt)"
 
-# 1. Apply gsettings text scaling
-subprocess.run(["gsettings", "set", "org.gnome.desktop.interface", "text-scaling-factor", str(factor)], check=False)
 
 # 2. Save state
 with open(cache_file, "w") as f:

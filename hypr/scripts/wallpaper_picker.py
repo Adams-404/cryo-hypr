@@ -439,16 +439,16 @@ class WallpaperPicker(Gtk.Window):
                 "--transition-step", "90"
             ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-            # Extract dynamic colors & reload bar
+            # Extract dynamic colors & write colors.css synchronously
             extract_script = os.path.expanduser("~/.config/hypr/scripts/extract_colors.py")
-            subprocess.Popen(["python3", extract_script, wall])
+            subprocess.run(["python3", extract_script, wall], check=False)
 
             # Notification
             name = os.path.basename(wall)
             subprocess.Popen(["notify-send", "Wallpaper Set", name])
 
             # Reload Waybar with new dynamic palette
-            subprocess.Popen(["bash", "-c", "sleep 0.3; killall waybar 2>/dev/null; sleep 0.2; waybar &"])
+            subprocess.Popen(["bash", "-c", "killall waybar 2>/dev/null; sleep 0.2; waybar &"])
 
         self.destroy()
 

@@ -28,7 +28,7 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 | Shortcut | Action |
 |---|---|
 | `SUPER` or `SUPER + Space` or `SUPER + R` | **Toggle App Launcher** (Wofi Spotlight) |
-| `SUPER + I` or `SUPER + ,` | **Settings & Preferences Hub** (System Settings, Font Scaling, Glass Blur, Wallpaper, Wi-Fi, Audio, Displays) |
+| `SUPER + I` or `SUPER + ,` | **Settings & Preferences Hub** (Theme Accent Color, Glass Blur, Wallpaper, Font Size, Wi-Fi, Audio) |
 | `SUPER + Q` | Open Terminal (`kitty`) |
 | `SUPER + E` | Open File Manager (`nautilus`) |
 | `SUPER + W` | Interactive **Wallpaper Picker** (live preview card on the right, live background sync, press again to cancel) |
@@ -99,8 +99,9 @@ The installer will:
 │   └── scripts/
 │       ├── autostart.sh        # Boot lifecycle daemon manager
 │       ├── settings.sh         # Unified Settings & Preferences hub
+│       ├── theme_color.sh      # Theme accent color selector (manual or auto)
 │       ├── fontsize.sh         # Global font scaling controller
-│       ├── glass.sh            # Glassmorphism & blur level switcher
+│       ├── glass.sh            # Glassmorphism & blur level switcher (persistent)
 │       ├── wifi.sh             # Interactive Wi-Fi manager
 │       ├── screenshot.sh       # PrtSc area screenshot with cancel toggle
 │       ├── menu.sh             # Toggleable launcher script

@@ -47,3 +47,14 @@ Before considering any task complete:
   - `docs(...)`: documentation, README, or agent guideline updates
   - `chore(...)`: maintenance, installer script, or symlink updates
 - Push all changes to the remote repository on `origin main` (`Adams-404/cryo-hypr`).
+
+---
+
+## 5. Strict GNOME Isolation Mandate (CRITICAL)
+
+> **GNOME is the user's stable fallback desktop environment. You MUST NEVER modify, touch, or interfere with GNOME settings, daemons, or configurations.**
+
+- **NEVER** run `gsettings set` or `dconf write` targeting global GNOME schemas (`org.gnome.desktop.*`, `org.gnome.shell.*`, `org.gnome.mutter.*`).
+- **NEVER** launch `gnome-control-center` with `XDG_CURRENT_DESKTOP=GNOME` or hook GNOME Settings into Hyprland scripts/menus.
+- **NEVER** alter GNOME titlebar buttons (`button-layout`), GNOME text scaling (`text-scaling-factor`), or GNOME extensions.
+- All configurations, font sizes, glass themes, color palettes, and window rules MUST be strictly isolated within `~/dotfiles/hypr`, `~/dotfiles/waybar`, `~/dotfiles/wofi`, `~/dotfiles/rofi`, and `~/dotfiles/mako`.

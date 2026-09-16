@@ -16,7 +16,7 @@ window {
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: @text_color;
     background-color: rgba(255, 255, 255, 0.06);
-    font-size: 12px;
+    font-size: 11px;
 }
 
 #input:focus {
@@ -74,7 +74,7 @@ scrollbar trough {
     margin: 0px 8px;
     border: none;
     color: @text_muted;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
 }
 

@@ -1,56 +1,89 @@
 #!/usr/bin/env bash
-# cryo-hypr Glassmorphism & Blur Configuration Engine
+# cryo-hypr Glassmorphism & Blur Configuration Engine (Persistent)
 
-STATE_FILE="$HOME/.cache/glass_preset"
+CONFIG_DIR="$HOME/.config/hypr"
+PRESET_FILE="$CONFIG_DIR/glass_preset"
+GLASS_LUA="$CONFIG_DIR/glass.lua"
 CURRENT_WALL=$(cat "$HOME/.cache/current_wallpaper" 2>/dev/null)
+mkdir -p "$CONFIG_DIR"
 
 apply_preset() {
     local preset="$1"
-    echo "$preset" > "$STATE_FILE"
+    echo "$preset" > "$PRESET_FILE"
+
+    local blur_enabled="true"
+    local blur_size="5"
+    local blur_passes="2"
+    local blur_vibrancy="0.45"
+    local blur_noise="0.012"
+    local blur_contrast="1.15"
+    local blur_brightness="1.00"
 
     case "$preset" in
         liquid)
             # Liquid Glass: Clear, vibrant, high-refraction water-like acrylic
-            hyprctl eval 'hl.config({ decoration = { blur = { enabled = true, size = 5, passes = 2, vibrancy = 0.45, noise = 0.012, contrast = 1.15, brightness = 1.00 } } })'
-            GLASS_WOFI_OPACITY=0.48 GLASS_WAYBAR_OPACITY=0.60 python3 "$HOME/.config/hypr/scripts/extract_colors.py" "$CURRENT_WALL"
-            notify-send "Glass Theme" "Liquid Glass activated (clear & vibrant)"
+            blur_size="5"; blur_passes="2"; blur_vibrancy="0.45"; blur_noise="0.012"; blur_contrast="1.15"; blur_brightness="1.00"
             ;;
         frosted)
             # Frosted Glass: Diffuse, milky, high-pass matte glass
-            hyprctl eval 'hl.config({ decoration = { blur = { enabled = true, size = 9, passes = 3, vibrancy = 0.20, noise = 0.000, contrast = 0.95, brightness = 0.85 } } })'
-            GLASS_WOFI_OPACITY=0.72 GLASS_WAYBAR_OPACITY=0.82 python3 "$HOME/.config/hypr/scripts/extract_colors.py" "$CURRENT_WALL"
-            notify-send "Glass Theme" "Frosted Glass activated (diffuse matte)"
+            blur_size="9"; blur_passes="3"; blur_vibrancy="0.20"; blur_noise="0.000"; blur_contrast="0.95"; blur_brightness="0.85"
             ;;
         crystal)
             # Crystal: Ultra-light, clear transparency
-            hyprctl eval 'hl.config({ decoration = { blur = { enabled = true, size = 3, passes = 1, vibrancy = 0.50, noise = 0.000, contrast = 1.20, brightness = 1.05 } } })'
-            GLASS_WOFI_OPACITY=0.32 GLASS_WAYBAR_OPACITY=0.45 python3 "$HOME/.config/hypr/scripts/extract_colors.py" "$CURRENT_WALL"
-            notify-send "Glass Theme" "Crystal Clear activated (ultra light)"
+            blur_size="3"; blur_passes="1"; blur_vibrancy="0.50"; blur_noise="0.000"; blur_contrast="1.20"; blur_brightness="1.05"
             ;;
         deep)
             # Deep Obsidian: Dark, high-contrast privacy glass
-            hyprctl eval 'hl.config({ decoration = { blur = { enabled = true, size = 7, passes = 2, vibrancy = 0.30, noise = 0.020, contrast = 1.05, brightness = 0.70 } } })'
-            GLASS_WOFI_OPACITY=0.85 GLASS_WAYBAR_OPACITY=0.90 python3 "$HOME/.config/hypr/scripts/extract_colors.py" "$CURRENT_WALL"
-            notify-send "Glass Theme" "Deep Obsidian activated (rich dark glass)"
+            blur_size="7"; blur_passes="2"; blur_vibrancy="0.30"; blur_noise="0.020"; blur_contrast="1.05"; blur_brightness="0.70"
             ;;
         off)
-            hyprctl eval 'hl.config({ decoration = { blur = { enabled = false } } })'
-            GLASS_WOFI_OPACITY=0.92 GLASS_WAYBAR_OPACITY=0.92 python3 "$HOME/.config/hypr/scripts/extract_colors.py" "$CURRENT_WALL"
-            notify-send "Glass Theme" "Blur disabled (solid opaque)"
+            blur_enabled="false"
             ;;
         *)
-            echo "Usage: $0 [liquid|frosted|crystal|deep|off|menu]"
+            echo "Usage: $0 [liquid|frosted|crystal|deep|off|menu|restore]"
             exit 1
             ;;
     esac
 
-    # Reload Waybar to apply new glass styling
+    # 1. Write persistent glass.lua for Hyprland reload persistence
+    cat <<EOF > "$GLASS_LUA"
+-- cryo-hypr Persistent Glass Configuration ($preset)
+hl.config({
+    decoration = {
+        blur = {
+            enabled    = $blur_enabled,
+            size       = $blur_size,
+            passes     = $blur_passes,
+            vibrancy   = $blur_vibrancy,
+            noise      = $blur_noise,
+            contrast   = $blur_contrast,
+            brightness = $blur_brightness,
+            popups     = true,
+        },
+    },
+})
+EOF
+
+    # 2. Apply live to Hyprland
+    hyprctl eval "hl.config({ decoration = { blur = { enabled = $blur_enabled, size = $blur_size, passes = $blur_passes, vibrancy = $blur_vibrancy, noise = $blur_noise, contrast = $blur_contrast, brightness = $blur_brightness, popups = true } } })" 2>/dev/null
+
+    # 3. Regenerate colors.css with matching glass opacity
+    python3 "$HOME/.config/hypr/scripts/extract_colors.py" "$CURRENT_WALL"
+
+    # 4. Reload Waybar to apply new glass styling
     killall waybar 2>/dev/null
-    sleep 0.3
+    sleep 0.2
     hyprctl dispatch 'hl.dsp.exec_cmd("waybar")' 2>/dev/null || waybar &
+
+    notify-send "Glass Theme" "Applied: $preset glass (saved & persistent)"
 }
 
 case "$1" in
+    restore)
+        PRESET="liquid"
+        [ -f "$PRESET_FILE" ] && PRESET=$(cat "$PRESET_FILE")
+        apply_preset "$PRESET"
+        ;;
     liquid|frosted|crystal|deep|off)
         apply_preset "$1"
         ;;
@@ -59,8 +92,10 @@ case "$1" in
             killall wofi
             exit 0
         fi
-        OPTIONS="  Liquid Glass (Clear, Glossy & Vibrant)\n  Frosted Glass (Diffuse & Milky Matte)\n  Crystal Clear (Ultra-Light Translucency)\n  Deep Obsidian (Dark Tinted Glass)\n  Disable Blur"
-        SELECTED=$(printf "%b" "$OPTIONS" | wofi --dmenu --prompt " Choose Glass Style..." --width 450 --height 300)
+        CURRENT="liquid"
+        [ -f "$PRESET_FILE" ] && CURRENT=$(cat "$PRESET_FILE")
+        OPTIONS="   Liquid Glass (Clear, Glossy and Vibrant)\n   Frosted Glass (Diffuse and Milky Matte)\n   Crystal Clear (Ultra-Light Translucency)\n   Deep Obsidian (Dark Tinted Glass)\n   Disable Blur"
+        SELECTED=$(printf "%b" "$OPTIONS" | wofi --dmenu --prompt "Glass Style (Current: $CURRENT)..." --width 460 --height 300)
         case "$SELECTED" in
             *"Liquid"*)   apply_preset liquid ;;
             *"Frosted"*)  apply_preset frosted ;;
