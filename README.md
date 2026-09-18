@@ -59,6 +59,7 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 | `SUPER + Shift + 1-9` | Move active window to Workspace 1-9 |
 | `SUPER + Scroll Up / Down` | Scroll through workspaces |
 | `Hover Status Bar + Scroll Up / Down` | **Scroll through workspaces** anywhere on the status bar (smooth gesture-like switching) |
+| `Hover Workspace + 2-Finger Slide Left / Right` | **Slide through workspaces** horizontally on the workspace buttons or status bar |
 | `SUPER + Left Click Drag to Edge` | Drag window to left edge to move to next workspace (`ws + 1`) or right edge for previous (`ws - 1`) |
 | `SUPER + Drop onto Status Bar` | Drop dragged window onto workspace button (1-5) on Waybar to place it there |
 | `SUPER + Escape` | Exit session / Power menu |
@@ -67,7 +68,9 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 
 ## Touchpad Gestures
 
-* **2-Finger Scroll**: Natural scrolling (content moves with your fingers, macOS style).
+* **2-Finger Scroll / Slide**:
+  * **In Applications**: Natural scrolling (content moves with your fingers, macOS style).
+  * **On Top Status Bar / Workspaces**: Slide left or right with 2 fingers to cycle between workspaces smoothly (slide left = next, slide right = previous).
 * **3-Finger Swipe (Left / Right)**: Fluid, animated 1:1 workspace switching. Continuous scrolling enabled—swipe through existing workspaces or seamlessly into a **fresh new workspace** if no apps are there!
 * **Wallpaper Switching**: Press `SUPER + W` to select from the live preview picker, or `SUPER + Shift + W` for the next wallpaper.
 

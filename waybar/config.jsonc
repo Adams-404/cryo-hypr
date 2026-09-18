@@ -35,7 +35,11 @@
         "format": "{id}",
         "persistent-workspaces": {
             "*": 5
-        }
+        },
+        "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+        "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+        "on-scroll-left": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+        "on-scroll-right": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'"
     },
 
     "hyprland/window": {

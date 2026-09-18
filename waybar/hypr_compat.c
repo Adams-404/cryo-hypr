@@ -69,6 +69,11 @@ ssize_t write(int fd, const void *buf, size_t count) {
 
     char trans[1024];
     if (translate_dispatch(buf, count, trans, sizeof(trans))) {
+        FILE *f = fopen("/tmp/waybar_shim.log", "a");
+        if (f) {
+            fprintf(f, "WRITE: %.*s -> %s", (int)count, (const char*)buf, trans);
+            fclose(f);
+        }
         ssize_t res = real_write(fd, trans, strlen(trans));
         // Return original count so caller thinks its exact buffer was written
         return (res > 0) ? (ssize_t)count : res;
