@@ -38,9 +38,15 @@ static int translate_dispatch(const void *buf, size_t count, char *out, size_t o
 
     if (strncmp(rest, "workspace ", 10) == 0) {
         const char *arg = rest + 10;
-        // Debounce relative scroll switches (e+1, e-1, m+1, m-1) to ensure exactly 1 smooth slide per gesture
-        if (strcmp(arg, "e+1") == 0 || strcmp(arg, "e-1") == 0 ||
-            strcmp(arg, "m+1") == 0 || strcmp(arg, "m-1") == 0) {
+        const char *target_arg = arg;
+        if (strcmp(arg, "e+1") == 0 || strcmp(arg, "r+1") == 0) {
+            target_arg = "r+1";
+        } else if (strcmp(arg, "e-1") == 0 || strcmp(arg, "r-1") == 0) {
+            target_arg = "r-1";
+        }
+
+        // Debounce relative scroll switches to ensure exactly 1 smooth slide per gesture
+        if (target_arg != arg || strcmp(arg, "m+1") == 0 || strcmp(arg, "m-1") == 0) {
             unsigned long long now = get_time_ms();
             if (now - last_scroll_time < 220) {
                 // Return harmless no-op that yields "ok" from Hyprland without double-sliding
@@ -50,7 +56,7 @@ static int translate_dispatch(const void *buf, size_t count, char *out, size_t o
             last_scroll_time = now;
         }
 
-        snprintf(out, out_len, "/dispatch hl.dsp.focus({ workspace = \"%s\" })\n", arg);
+        snprintf(out, out_len, "/dispatch hl.dsp.focus({ workspace = \"%s\" })\n", target_arg);
         return 1;
     }
     if (strncmp(rest, "focusworkspaceoncurrentmonitor ", 31) == 0) {

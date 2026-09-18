@@ -36,10 +36,10 @@
         "persistent-workspaces": {
             "*": 5
         },
-        "on-scroll-up": "$HOME/.config/hypr/scripts/ws_scroll e-1",
-        "on-scroll-down": "$HOME/.config/hypr/scripts/ws_scroll e+1",
-        "on-scroll-left": "$HOME/.config/hypr/scripts/ws_scroll e-1",
-        "on-scroll-right": "$HOME/.config/hypr/scripts/ws_scroll e+1"
+        "on-scroll-up": "$HOME/.config/hypr/scripts/ws_scroll r-1",
+        "on-scroll-down": "$HOME/.config/hypr/scripts/ws_scroll r+1",
+        "on-scroll-left": "$HOME/.config/hypr/scripts/ws_scroll r-1",
+        "on-scroll-right": "$HOME/.config/hypr/scripts/ws_scroll r+1"
     },
 
     "hyprland/window": {
