@@ -460,14 +460,14 @@ hl.layer_rule({
     name         = "blur-swaync-control-center",
     match        = { namespace = "^swaync-control-center$" },
     blur         = true,
-    ignore_alpha = 0.2,
+    ignore_alpha = 0.05,
 })
 
 hl.layer_rule({
     name         = "blur-swaync-notification-window",
     match        = { namespace = "^swaync-notification-window$" },
     blur         = true,
-    ignore_alpha = 0.2,
+    ignore_alpha = 0.05,
 })
 
 -- Hyprland-run windowrule
