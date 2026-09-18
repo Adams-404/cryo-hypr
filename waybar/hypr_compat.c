@@ -5,9 +5,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/socket.h>
+#include <time.h>
 
 static ssize_t (*real_write)(int fd, const void *buf, size_t count) = NULL;
 static ssize_t (*real_send)(int sockfd, const void *buf, size_t len, int flags) = NULL;
+
+static unsigned long long get_time_ms(void) {
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return (unsigned long long)ts.tv_sec * 1000 + (unsigned long long)ts.tv_nsec / 1000000;
+}
+
+static unsigned long long last_scroll_time = 0;
 
 static int translate_dispatch(const void *buf, size_t count, char *out, size_t out_len) {
     if (count < 9 || strncmp((const char *)buf, "dispatch ", 9) != 0) {
@@ -29,6 +38,18 @@ static int translate_dispatch(const void *buf, size_t count, char *out, size_t o
 
     if (strncmp(rest, "workspace ", 10) == 0) {
         const char *arg = rest + 10;
+        // Debounce relative scroll switches (e+1, e-1, m+1, m-1) to ensure exactly 1 smooth slide per gesture
+        if (strcmp(arg, "e+1") == 0 || strcmp(arg, "e-1") == 0 ||
+            strcmp(arg, "m+1") == 0 || strcmp(arg, "m-1") == 0) {
+            unsigned long long now = get_time_ms();
+            if (now - last_scroll_time < 220) {
+                // Return harmless no-op that yields "ok" from Hyprland without double-sliding
+                snprintf(out, out_len, "/eval true\n");
+                return 1;
+            }
+            last_scroll_time = now;
+        }
+
         snprintf(out, out_len, "/dispatch hl.dsp.focus({ workspace = \"%s\" })\n", arg);
         return 1;
     }
@@ -69,11 +90,6 @@ ssize_t write(int fd, const void *buf, size_t count) {
 
     char trans[1024];
     if (translate_dispatch(buf, count, trans, sizeof(trans))) {
-        FILE *f = fopen("/tmp/waybar_shim.log", "a");
-        if (f) {
-            fprintf(f, "WRITE: %.*s -> %s", (int)count, (const char*)buf, trans);
-            fclose(f);
-        }
         ssize_t res = real_write(fd, trans, strlen(trans));
         // Return original count so caller thinks its exact buffer was written
         return (res > 0) ? (ssize_t)count : res;
