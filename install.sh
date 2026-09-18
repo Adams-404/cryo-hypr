@@ -26,6 +26,7 @@ install_packages() {
             waybar \
             wofi \
             mako \
+            SwayNotificationCenter \
             brightnessctl \
             pavucontrol \
             network-manager-applet \
@@ -44,6 +45,7 @@ install_packages() {
             waybar \
             wofi \
             mako \
+            swaynotificationcenter \
             brightnessctl \
             pavucontrol \
             network-manager-applet \
@@ -68,7 +70,7 @@ fi
 # 2. Backup existing configs if they are real directories (not symlinks)
 echo -e "${BLUE}-> Backing up existing configurations...${RESET}"
 mkdir -p "$BACKUP_DIR"
-for cfg in hypr waybar wofi mako rofi; do
+for cfg in hypr waybar wofi mako rofi swaync; do
     if [ -d "$HOME/.config/$cfg" ] && [ ! -L "$HOME/.config/$cfg" ]; then
         echo "Backing up ~/.config/$cfg -> $BACKUP_DIR/"
         mv "$HOME/.config/$cfg" "$BACKUP_DIR/"
@@ -85,6 +87,7 @@ ln -sf "$DOTFILES_DIR/waybar" "$HOME/.config/waybar"
 ln -sf "$DOTFILES_DIR/wofi" "$HOME/.config/wofi"
 ln -sf "$DOTFILES_DIR/mako" "$HOME/.config/mako"
 ln -sf "$DOTFILES_DIR/rofi" "$HOME/.config/rofi"
+ln -sf "$DOTFILES_DIR/swaync" "$HOME/.config/swaync"
 
 # 4. Set execution permissions on scripts and compile IPC shim
 echo -e "${BLUE}-> Setting script permissions and compiling Waybar IPC shim...${RESET}"

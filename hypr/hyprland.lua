@@ -291,8 +291,9 @@ hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd("rofi -show window"))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/settings.sh"))
 hl.bind(mainMod .. " + comma", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/settings.sh"))
 
--- Quick Wi-Fi Network & Glass Theme Switchers
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/wifi.sh"))
+-- Notification Center Panel (Super+N) & Quick Wi-Fi Network (Super+Shift+N)
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t -sw"))
+hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/wifi.sh"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/glass.sh menu"))
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
@@ -453,6 +454,20 @@ hl.layer_rule({
     blur         = true,
     dim_around   = true,
     ignore_alpha = 0.05,
+})
+
+hl.layer_rule({
+    name         = "blur-swaync-control-center",
+    match        = { namespace = "^swaync-control-center$" },
+    blur         = true,
+    ignore_alpha = 0.2,
+})
+
+hl.layer_rule({
+    name         = "blur-swaync-notification-window",
+    match        = { namespace = "^swaync-notification-window$" },
+    blur         = true,
+    ignore_alpha = 0.2,
 })
 
 -- Hyprland-run windowrule

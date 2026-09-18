@@ -2,7 +2,7 @@
 
 # Kill existing instances if any to avoid duplicates
 killall waybar 2>/dev/null
-killall mako 2>/dev/null
+killall mako swaync 2>/dev/null
 # Restore persistent glass preset
 "$HOME/.config/hypr/scripts/glass.sh" restore &
 
@@ -22,7 +22,7 @@ if [ -n "$WALLPAPER" ] && [ -f "$HOME/.config/hypr/scripts/extract_colors.py" ];
 fi
 
 # Start notification daemon
-mako &
+swaync &
 
 # Start status bar with dynamic theme and IPC compatibility shim
 "$HOME/.config/hypr/scripts/launch_waybar.sh" &

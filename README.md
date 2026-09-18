@@ -17,7 +17,7 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 - **Window Controls**: Dedicated Maximize (`SUPER + M`), True Fullscreen (`SUPER + F`), and Minimize to Magic Tray (`SUPER + H` / `SUPER + S`).
 - **Wallpaper Chooser**: Custom GTK3 Layer-Shell wallpaper picker with two-column layout, real-time right-panel image preview, and live desktop preview sync.
 - **Global Font Scaling**: Dynamic font and scaling controller (`fontsize.sh`) to easily adjust UI size across GTK, Waybar, Wofi, and notifications.
-- **Notifications**: [Mako](https://github.com/emersion/mako) styled to match the dark glass aesthetic.
+- **Notification & Control Center**: [SwayNotificationCenter](https://github.com/ErikReider/SwayNotificationCenter) slide-out side panel with notification history, Do Not Disturb, MPRIS media controls, volume/brightness sliders, and unread counter badge on the status bar.
 - **Snipping Tool**: Area screenshot straight to clipboard via the physical **`Print`** (PrtSc) key.
 
 ---
@@ -29,11 +29,12 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 |---|---|
 | `SUPER` or `SUPER + Space` or `SUPER + R` | **Toggle App Launcher** (Wofi Spotlight) |
 | `SUPER + I` or `SUPER + ,` | **Settings & Preferences Hub** (Theme Accent Color, Glass Blur, Wallpaper, Font Size, Wi-Fi, Audio) |
+| `SUPER + N` | **Toggle Notification Center** slide-out side panel (or click bell on Waybar) |
+| `SUPER + Shift + N` | Interactive **Wi-Fi / Network Dropdown** (or click Network pill on Waybar) |
 | `SUPER + Q` | Open Terminal (`kitty`) |
 | `SUPER + E` | Open File Manager (`nautilus`) |
 | `SUPER + W` | Interactive **Wallpaper Picker** (live preview card on the right, live background sync, press again to cancel) |
 | `SUPER + Shift + W` | Cycle **Next Wallpaper** |
-| `SUPER + N` | Interactive **Wi-Fi / Network Dropdown** (or click Network pill on Waybar) |
 | `SUPER + B` | **Glass / Blur Theme Switcher** (`Liquid`, `Frosted`, `Crystal`, `Deep`, `Off`) |
 | `Print` (PrtSc) | **Area Screenshot** to clipboard (press again or Escape to cancel) |
 

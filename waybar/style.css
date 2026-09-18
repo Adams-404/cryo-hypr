@@ -4,7 +4,7 @@
     border: none;
     border-radius: 0px;
     font-family: "JetBrains Mono", "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: bold;
     min-height: 0;
 }
@@ -132,6 +132,24 @@ window#waybar.empty #window {
 
 #battery.critical:not(.charging) {
     color: #f7768e;
+}
+
+#custom-notification {
+    color: @accent_color;
+    padding: 3px 10px;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+#custom-notification:hover {
+    background: @accent_alpha;
+}
+
+#custom-notification.dnd-none,
+#custom-notification.dnd-notification,
+#custom-notification.dnd-inhibited-none,
+#custom-notification.dnd-inhibited-notification {
+    color: @text_muted;
 }
 
 #custom-settings {
