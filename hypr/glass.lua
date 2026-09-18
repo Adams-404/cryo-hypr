@@ -1,14 +1,14 @@
--- cryo-hypr Persistent Glass Configuration (liquid)
+-- cryo-hypr Persistent Glass Configuration (crystal)
 hl.config({
     decoration = {
         blur = {
             enabled    = true,
-            size       = 5,
-            passes     = 2,
-            vibrancy   = 0.45,
-            noise      = 0.012,
-            contrast   = 1.15,
-            brightness = 1.00,
+            size       = 3,
+            passes     = 1,
+            vibrancy   = 0.50,
+            noise      = 0.000,
+            contrast   = 1.20,
+            brightness = 1.05,
             popups     = true,
         },
     },

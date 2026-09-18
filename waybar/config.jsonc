@@ -27,6 +27,8 @@
 
     "hyprland/workspaces": {
         "disable-scroll": false,
+        "enable-bar-scroll": true,
+        "smooth-scrolling-threshold": 1.0,
         "all-outputs": true,
         "active-only": false,
         "on-click": "activate",

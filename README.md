@@ -58,6 +58,7 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 | `SUPER + 1-9` | Switch to Workspace 1-9 |
 | `SUPER + Shift + 1-9` | Move active window to Workspace 1-9 |
 | `SUPER + Scroll Up / Down` | Scroll through workspaces |
+| `Hover Status Bar + Scroll Up / Down` | **Scroll through workspaces** anywhere on the status bar (smooth gesture-like switching) |
 | `SUPER + Left Click Drag to Edge` | Drag window to left edge to move to next workspace (`ws + 1`) or right edge for previous (`ws - 1`) |
 | `SUPER + Drop onto Status Bar` | Drop dragged window onto workspace button (1-5) on Waybar to place it there |
 | `SUPER + Escape` | Exit session / Power menu |
