@@ -9,9 +9,7 @@ apply_color() {
     if [ "$color" = "auto" ]; then
         rm -f "$COLOR_FILE"
         python3 "$HOME/.config/hypr/scripts/extract_colors.py" "$CURRENT_WALL"
-        killall waybar 2>/dev/null
-        sleep 0.2
-        hyprctl dispatch 'hl.dsp.exec_cmd("waybar")' 2>/dev/null || waybar &
+        hyprctl dispatch 'hl.dsp.exec_cmd("~/.config/hypr/scripts/launch_waybar.sh")' 2>/dev/null || "$HOME/.config/hypr/scripts/launch_waybar.sh" &
         notify-send "Theme Color" "Restored to Auto (Wallpaper Sync)"
         exit 0
     fi
@@ -21,9 +19,7 @@ apply_color() {
     if [ -n "$color" ]; then
         echo "$color" > "$COLOR_FILE"
         python3 "$HOME/.config/hypr/scripts/extract_colors.py" "$CURRENT_WALL"
-        killall waybar 2>/dev/null
-        sleep 0.2
-        hyprctl dispatch 'hl.dsp.exec_cmd("waybar")' 2>/dev/null || waybar &
+        hyprctl dispatch 'hl.dsp.exec_cmd("~/.config/hypr/scripts/launch_waybar.sh")' 2>/dev/null || "$HOME/.config/hypr/scripts/launch_waybar.sh" &
         notify-send "Theme Color" "Accent set to $color"
     fi
 }

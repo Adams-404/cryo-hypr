@@ -24,8 +24,8 @@ fi
 # Start notification daemon
 mako &
 
-# Start status bar with dynamic theme
-waybar &
+# Start status bar with dynamic theme and IPC compatibility shim
+"$HOME/.config/hypr/scripts/launch_waybar.sh" &
 
 # Start wallpaper daemon if not running
 if ! pgrep -x "awww-daemon" > /dev/null; then

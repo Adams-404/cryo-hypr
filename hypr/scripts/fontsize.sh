@@ -128,9 +128,7 @@ EOF
 
     # Reload daemons
     makoctl reload 2>/dev/null || true
-    killall waybar 2>/dev/null
-    sleep 0.2
-    hyprctl dispatch 'hl.dsp.exec_cmd("waybar")' 2>/dev/null || waybar &
+    hyprctl dispatch 'hl.dsp.exec_cmd("~/.config/hypr/scripts/launch_waybar.sh")' 2>/dev/null || "$HOME/.config/hypr/scripts/launch_waybar.sh" &
     notify-send "Font Size" "Applied: $preset scaling"
 }
 

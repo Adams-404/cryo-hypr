@@ -18,9 +18,7 @@ set_wallpaper() {
         # Set wallpaper with animated wipe
         awww img "$wall" --transition-type wipe --transition-angle 30 --transition-step 90
         # Reload Waybar with new colors
-        killall waybar 2>/dev/null
-        sleep 0.3
-        hyprctl dispatch 'hl.dsp.exec_cmd("waybar")' 2>/dev/null || waybar &
+        hyprctl dispatch 'hl.dsp.exec_cmd("~/.config/hypr/scripts/launch_waybar.sh")' 2>/dev/null || "$HOME/.config/hypr/scripts/launch_waybar.sh" &
         notify-send "Wallpaper Updated" "$(basename "$wall")"
     fi
 }

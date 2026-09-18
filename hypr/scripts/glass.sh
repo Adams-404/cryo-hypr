@@ -71,9 +71,7 @@ EOF
     python3 "$HOME/.config/hypr/scripts/extract_colors.py" "$CURRENT_WALL"
 
     # 4. Reload Waybar to apply new glass styling
-    killall waybar 2>/dev/null
-    sleep 0.2
-    hyprctl dispatch 'hl.dsp.exec_cmd("waybar")' 2>/dev/null || waybar &
+    hyprctl dispatch 'hl.dsp.exec_cmd("~/.config/hypr/scripts/launch_waybar.sh")' 2>/dev/null || "$HOME/.config/hypr/scripts/launch_waybar.sh" &
 
     notify-send "Glass Theme" "Applied: $preset glass (saved & persistent)"
 }

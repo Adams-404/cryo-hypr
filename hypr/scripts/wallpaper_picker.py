@@ -448,7 +448,7 @@ class WallpaperPicker(Gtk.Window):
             subprocess.Popen(["notify-send", "Wallpaper Set", name])
 
             # Reload Waybar with new dynamic palette
-            subprocess.Popen(["bash", "-c", "killall waybar 2>/dev/null; sleep 0.2; hyprctl dispatch 'hl.dsp.exec_cmd(\"waybar\")' 2>/dev/null || waybar &"])
+            subprocess.Popen(["bash", "-c", "hyprctl dispatch 'hl.dsp.exec_cmd(\"~/.config/hypr/scripts/launch_waybar.sh\")' 2>/dev/null || \"$HOME/.config/hypr/scripts/launch_waybar.sh\" &"])
 
         self.destroy()
 
