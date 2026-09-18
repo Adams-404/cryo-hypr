@@ -89,8 +89,9 @@ ln -sf "$DOTFILES_DIR/rofi" "$HOME/.config/rofi"
 # 4. Set execution permissions on scripts and compile IPC shim
 echo -e "${BLUE}-> Setting script permissions and compiling Waybar IPC shim...${RESET}"
 chmod +x "$DOTFILES_DIR/hypr/scripts/"*
-if command -v gcc >/dev/null 2>&1 && [ -f "$DOTFILES_DIR/waybar/hypr_compat.c" ]; then
-    gcc -shared -fPIC -O2 -Wall "$DOTFILES_DIR/waybar/hypr_compat.c" -o "$DOTFILES_DIR/waybar/hypr_compat.so" -ldl 2>/dev/null || true
+if command -v gcc >/dev/null 2>&1; then
+    [ -f "$DOTFILES_DIR/waybar/hypr_compat.c" ] && gcc -shared -fPIC -O2 -Wall "$DOTFILES_DIR/waybar/hypr_compat.c" -o "$DOTFILES_DIR/waybar/hypr_compat.so" -ldl 2>/dev/null || true
+    [ -f "$DOTFILES_DIR/hypr/scripts/ws_scroll.c" ] && gcc -O3 -Wall "$DOTFILES_DIR/hypr/scripts/ws_scroll.c" -o "$DOTFILES_DIR/hypr/scripts/ws_scroll" 2>/dev/null || true
 fi
 
 # 5. Initialize colors and wallpaper if Pictures/Wallpapers exists

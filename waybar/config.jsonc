@@ -28,14 +28,18 @@
     "hyprland/workspaces": {
         "disable-scroll": false,
         "enable-bar-scroll": true,
-        "smooth-scrolling-threshold": 1.2,
+        "smooth-scrolling-threshold": 1.0,
         "all-outputs": true,
         "active-only": false,
         "on-click": "activate",
         "format": "{id}",
         "persistent-workspaces": {
             "*": 5
-        }
+        },
+        "on-scroll-up": "$HOME/.config/hypr/scripts/ws_scroll e-1",
+        "on-scroll-down": "$HOME/.config/hypr/scripts/ws_scroll e+1",
+        "on-scroll-left": "$HOME/.config/hypr/scripts/ws_scroll e-1",
+        "on-scroll-right": "$HOME/.config/hypr/scripts/ws_scroll e+1"
     },
 
     "hyprland/window": {
