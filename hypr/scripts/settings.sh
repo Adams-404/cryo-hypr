@@ -54,7 +54,7 @@ case "$1" in
                 pavucontrol &
                 ;;
             *"Keybindings"*)
-                xdg-open "$HOME/dotfiles/README.md" 2>/dev/null || xdg-open "https://github.com/Adams-404/cryo-hypr" &
+                xdg-open "$HOME/cryo-hypr/README.md" 2>/dev/null || xdg-open "$HOME/dotfiles/README.md" 2>/dev/null || xdg-open "https://github.com/Adams-404/cryo-hypr" &
                 ;;
         esac
         ;;

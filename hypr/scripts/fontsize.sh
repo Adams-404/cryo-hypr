@@ -87,7 +87,11 @@ with open(cache_file, "w") as f:
     f.write(str(factor))
 
 # 3. Update Waybar style.css root font-size
-wb_css = os.path.expanduser("~/dotfiles/waybar/style.css")
+wb_css = os.path.realpath(os.path.expanduser("~/.config/waybar/style.css"))
+if not os.path.exists(wb_css):
+    wb_css = os.path.expanduser("~/cryo-hypr/waybar/style.css")
+if not os.path.exists(wb_css):
+    wb_css = os.path.expanduser("~/dotfiles/waybar/style.css")
 if os.path.exists(wb_css):
     with open(wb_css, "r") as f:
         c = f.read()
@@ -96,7 +100,11 @@ if os.path.exists(wb_css):
         f.write(c)
 
 # 4. Update Wofi style.css
-wofi_css = os.path.expanduser("~/dotfiles/wofi/style.css")
+wofi_css = os.path.realpath(os.path.expanduser("~/.config/wofi/style.css"))
+if not os.path.exists(wofi_css):
+    wofi_css = os.path.expanduser("~/cryo-hypr/wofi/style.css")
+if not os.path.exists(wofi_css):
+    wofi_css = os.path.expanduser("~/dotfiles/wofi/style.css")
 if os.path.exists(wofi_css):
     with open(wofi_css, "r") as f:
         c = f.read()
@@ -106,7 +114,11 @@ if os.path.exists(wofi_css):
         f.write(c)
 
 # 5. Update Mako config
-mako_conf = os.path.expanduser("~/dotfiles/mako/config")
+mako_conf = os.path.realpath(os.path.expanduser("~/.config/mako/config"))
+if not os.path.exists(mako_conf):
+    mako_conf = os.path.expanduser("~/cryo-hypr/mako/config")
+if not os.path.exists(mako_conf):
+    mako_conf = os.path.expanduser("~/dotfiles/mako/config")
 if os.path.exists(mako_conf):
     with open(mako_conf, "r") as f:
         c = f.read()
@@ -115,7 +127,11 @@ if os.path.exists(mako_conf):
         f.write(c)
 
 # 6. Update Rofi config.rasi
-rofi_conf = os.path.expanduser("~/dotfiles/rofi/config.rasi")
+rofi_conf = os.path.realpath(os.path.expanduser("~/.config/rofi/config.rasi"))
+if not os.path.exists(rofi_conf):
+    rofi_conf = os.path.expanduser("~/cryo-hypr/rofi/config.rasi")
+if not os.path.exists(rofi_conf):
+    rofi_conf = os.path.expanduser("~/dotfiles/rofi/config.rasi")
 if os.path.exists(rofi_conf):
     with open(rofi_conf, "r") as f:
         c = f.read()
