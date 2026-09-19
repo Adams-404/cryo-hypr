@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 # ==============================================================================
-#  cryo-hypr: Automated Dotfiles Installer for Hyprland
+#  cryo-hypr: Automated Desktop System Installer for Hyprland
 #  Supports: Fedora (dnf), Arch Linux (pacman), Debian/Ubuntu (apt)
 # ==============================================================================
 
 set -e
 
-DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CRYO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$CRYO_DIR"
 BACKUP_DIR="$HOME/.config_backup_$(date +%Y%m%d_%H%M%S)"
 
 GREEN="\033[1;32m"
@@ -15,7 +16,7 @@ YELLOW="\033[1;33m"
 RESET="\033[0m"
 
 echo -e "${BLUE}=== Welcome to cryo-hypr Setup ===${RESET}"
-echo "Dotfiles directory: $DOTFILES_DIR"
+echo "Installation directory: $CRYO_DIR"
 
 # 1. Package Installation (Optional / Interactive)
 install_packages() {
@@ -79,22 +80,27 @@ for cfg in hypr waybar wofi mako rofi swaync; do
     fi
 done
 
-# 3. Create symlinks directly to dotfiles
-echo -e "${BLUE}-> Linking dotfiles into ~/.config/...${RESET}"
+# 3. Create symlinks directly to configs
+echo -e "${BLUE}-> Linking configurations into ~/.config/...${RESET}"
 mkdir -p "$HOME/.config"
-ln -sf "$DOTFILES_DIR/hypr" "$HOME/.config/hypr"
-ln -sf "$DOTFILES_DIR/waybar" "$HOME/.config/waybar"
-ln -sf "$DOTFILES_DIR/wofi" "$HOME/.config/wofi"
-ln -sf "$DOTFILES_DIR/mako" "$HOME/.config/mako"
-ln -sf "$DOTFILES_DIR/rofi" "$HOME/.config/rofi"
-ln -sf "$DOTFILES_DIR/swaync" "$HOME/.config/swaync"
+ln -sf "$CRYO_DIR/hypr" "$HOME/.config/hypr"
+ln -sf "$CRYO_DIR/waybar" "$HOME/.config/waybar"
+ln -sf "$CRYO_DIR/wofi" "$HOME/.config/wofi"
+ln -sf "$CRYO_DIR/mako" "$HOME/.config/mako"
+ln -sf "$CRYO_DIR/rofi" "$HOME/.config/rofi"
+ln -sf "$CRYO_DIR/swaync" "$HOME/.config/swaync"
+
+# Create compatibility symlink for legacy ~/dotfiles if needed
+if [ "$CRYO_DIR" != "$HOME/dotfiles" ] && [ ! -e "$HOME/dotfiles" ]; then
+    ln -sf "$CRYO_DIR" "$HOME/dotfiles"
+fi
 
 # 4. Set execution permissions on scripts and compile IPC shim
 echo -e "${BLUE}-> Setting script permissions and compiling Waybar IPC shim...${RESET}"
-chmod +x "$DOTFILES_DIR/hypr/scripts/"*
+chmod +x "$CRYO_DIR/hypr/scripts/"*
 if command -v gcc >/dev/null 2>&1; then
-    [ -f "$DOTFILES_DIR/waybar/hypr_compat.c" ] && gcc -shared -fPIC -O2 -Wall "$DOTFILES_DIR/waybar/hypr_compat.c" -o "$DOTFILES_DIR/waybar/hypr_compat.so" -ldl 2>/dev/null || true
-    [ -f "$DOTFILES_DIR/hypr/scripts/ws_scroll.c" ] && gcc -O3 -Wall "$DOTFILES_DIR/hypr/scripts/ws_scroll.c" -o "$DOTFILES_DIR/hypr/scripts/ws_scroll" 2>/dev/null || true
+    [ -f "$CRYO_DIR/waybar/hypr_compat.c" ] && gcc -shared -fPIC -O2 -Wall "$CRYO_DIR/waybar/hypr_compat.c" -o "$CRYO_DIR/waybar/hypr_compat.so" -ldl 2>/dev/null || true
+    [ -f "$CRYO_DIR/hypr/scripts/ws_scroll.c" ] && gcc -O3 -Wall "$CRYO_DIR/hypr/scripts/ws_scroll.c" -o "$CRYO_DIR/hypr/scripts/ws_scroll" 2>/dev/null || true
 fi
 
 # 5. Initialize colors and wallpaper if Pictures/Wallpapers exists
