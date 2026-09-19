@@ -82,15 +82,15 @@ An aesthetic, modern, and fluid **Hyprland** desktop environment configured for 
 Clone this repository and run the automated installer:
 
 ```bash
-git clone https://github.com/Adams-404/cryo-hypr.git ~/dotfiles
-cd ~/dotfiles
+git clone https://github.com/Adams-404/cryo-hypr.git ~/cryo-hypr
+cd ~/cryo-hypr
 ./install.sh
 ```
 
 The installer will:
 1. Detect your package manager (`dnf` or `pacman`) and install required packages & fonts.
 2. Back up any existing configs to `~/.config_backup_<timestamp>`.
-3. Create live symlinks from `~/.config/{hypr,waybar,wofi,mako}` directly to `~/dotfiles/`.
+3. Create live symlinks from `~/.config/{hypr,waybar,wofi,swaync,rofi}` directly to `~/cryo-hypr/`.
 4. Make all scripts executable and reload Hyprland live.
 
 ---
@@ -98,7 +98,7 @@ The installer will:
 ## Repository Structure
 
 ```
-~/dotfiles/
+~/cryo-hypr/
 ├── hypr/
 │   ├── hyprland.lua            # Main Hyprland Lua configuration
 │   └── scripts/
@@ -117,12 +117,16 @@ The installer will:
 │   ├── config.jsonc            # Modular status bar layout & network speeds
 │   ├── style.css               # Glassmorphism pill styling
 │   └── colors.css              # Dynamic wallpaper palette
+├── swaync/
+│   ├── config.json             # Notification center layout & toggles
+│   ├── style.css               # Floating glassmorphism notification center
+│   └── colors.css              # Dynamic theme color palette
 ├── wofi/
 │   ├── config                  # Spotlight modal configuration
 │   ├── style.css               # Border-only active state & no scrollbars
 │   └── colors.css              # Dynamic wallpaper palette
 ├── mako/
-│   └── config                  # Dark glass notification theme
+│   └── config                  # Dark glass notification theme (fallback)
 ├── rofi/
 │   └── config.rasi             # Modern window switcher modal
 ├── install.sh                  # Automated multi-distro setup script

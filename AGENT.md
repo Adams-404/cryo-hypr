@@ -18,12 +18,14 @@ This file serves as a mandatory guideline for any AI assistant or autonomous age
 
 ## 2. Architecture & Single Source of Truth
 
-- All configuration files belong in `~/dotfiles`:
-  - `~/dotfiles/hypr/` -> symlinked to `~/.config/hypr`
-  - `~/dotfiles/waybar/` -> symlinked to `~/.config/waybar`
-  - `~/dotfiles/wofi/` -> symlinked to `~/.config/wofi`
-  - `~/dotfiles/mako/` -> symlinked to `~/.config/mako`
-- **Never** break or replace symlinks with plain directories. Edit files inside `~/dotfiles/` so that every change is immediately tracked by Git.
+- All configuration files belong in `~/cryo-hypr` (with `~/dotfiles` preserved as a backward-compatibility symlink):
+  - `~/cryo-hypr/hypr/` -> symlinked to `~/.config/hypr`
+  - `~/cryo-hypr/waybar/` -> symlinked to `~/.config/waybar`
+  - `~/cryo-hypr/swaync/` -> symlinked to `~/.config/swaync`
+  - `~/cryo-hypr/wofi/` -> symlinked to `~/.config/wofi`
+  - `~/cryo-hypr/rofi/` -> symlinked to `~/.config/rofi`
+  - `~/cryo-hypr/mako/` -> symlinked to `~/.config/mako`
+- **Never** break or replace symlinks with plain directories. Edit files inside `~/cryo-hypr/` so that every change is immediately tracked by Git.
 - Always ensure scripts in `hypr/scripts/` have executable permissions (`chmod +x`).
 
 ---
@@ -57,4 +59,4 @@ Before considering any task complete:
 - **NEVER** run `gsettings set` or `dconf write` targeting global GNOME schemas (`org.gnome.desktop.*`, `org.gnome.shell.*`, `org.gnome.mutter.*`).
 - **NEVER** launch `gnome-control-center` with `XDG_CURRENT_DESKTOP=GNOME` or hook GNOME Settings into Hyprland scripts/menus.
 - **NEVER** alter GNOME titlebar buttons (`button-layout`), GNOME text scaling (`text-scaling-factor`), or GNOME extensions.
-- All configurations, font sizes, glass themes, color palettes, and window rules MUST be strictly isolated within `~/dotfiles/hypr`, `~/dotfiles/waybar`, `~/dotfiles/wofi`, `~/dotfiles/rofi`, and `~/dotfiles/mako`.
+- All configurations, font sizes, glass themes, color palettes, and window rules MUST be strictly isolated within `~/cryo-hypr` (`hypr`, `waybar`, `swaync`, `wofi`, `rofi`, and `mako`).
