@@ -20,7 +20,7 @@ if command -v hyprpicker >/dev/null 2>&1; then
 fi
 
 # 3. Select area with slurp
-GEOM=$(slurp -b 00000044 -c ffffffaa -s 00000015 -w 1.5 2>/dev/null)
+GEOM=$(slurp -d -b "#00000044" -c "#ffffffcc" -s "#00000020" -w 2 2>/dev/null)
 
 # 4. If an area was selected, capture and copy to clipboard
 if [ -n "$GEOM" ]; then
