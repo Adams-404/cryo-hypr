@@ -2,7 +2,7 @@
 hl.config({
     general = {
         col = {
-            active_border = 0xeebf7862,
+            active_border = 0xeebbbf2b,
         },
     },
 })
