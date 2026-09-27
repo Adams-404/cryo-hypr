@@ -3,8 +3,9 @@
 # Kill existing instances if any to avoid duplicates
 killall waybar 2>/dev/null
 killall mako swaync 2>/dev/null
-# Restore persistent glass preset
-"$HOME/.config/hypr/scripts/glass.sh" restore &
+
+# Restore persistent glass preset (applies blur without spawning extra bars)
+"$HOME/.config/hypr/scripts/glass.sh" restore
 
 WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 DEFAULT_WALL="$WALLPAPER_DIR/glowing-rings-5120x2880-24778.png"
@@ -22,18 +23,18 @@ if [ -n "$WALLPAPER" ] && [ -f "$HOME/.config/hypr/scripts/extract_colors.py" ];
 fi
 
 # Start notification daemon
-swaync &
+swaync & disown
 
 # Start status bar with dynamic theme and IPC compatibility shim
-"$HOME/.config/hypr/scripts/launch_waybar.sh" &
+"$HOME/.config/hypr/scripts/launch_waybar.sh" & disown
 
 # Start wallpaper daemon if not running
 if ! pgrep -x "awww-daemon" > /dev/null; then
-    awww-daemon &
-    sleep 0.8
+    awww-daemon & disown
+    sleep 0.5
 fi
 
 # Set wallpaper
 if [ -n "$WALLPAPER" ]; then
-    awww img "$WALLPAPER" --transition-type wipe --transition-angle 30 --transition-step 90
+    awww img "$WALLPAPER" --transition-type wipe --transition-angle 30 --transition-step 90 & disown
 fi
