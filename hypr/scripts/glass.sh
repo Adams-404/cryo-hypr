@@ -67,20 +67,22 @@ EOF
     # 2. Apply live to Hyprland
     hyprctl eval "hl.config({ decoration = { blur = { enabled = $blur_enabled, size = $blur_size, passes = $blur_passes, vibrancy = $blur_vibrancy, noise = $blur_noise, contrast = $blur_contrast, brightness = $blur_brightness, popups = true } } })" 2>/dev/null
 
-    # 3. Regenerate colors.css with matching glass opacity
-    python3 "$HOME/.config/hypr/scripts/extract_colors.py" "$CURRENT_WALL"
+    if [ "$2" != "no-reload" ]; then
+        # 3. Regenerate colors.css with matching glass opacity
+        python3 "$HOME/.config/hypr/scripts/extract_colors.py" "$CURRENT_WALL"
 
-    # 4. Reload Waybar to apply new glass styling
-    hyprctl dispatch 'hl.dsp.exec_cmd("~/.config/hypr/scripts/launch_waybar.sh")' 2>/dev/null || "$HOME/.config/hypr/scripts/launch_waybar.sh" &
+        # 4. Reload Waybar to apply new glass styling
+        "$HOME/.config/hypr/scripts/launch_waybar.sh" &
 
-    notify-send "Glass Theme" "Applied: $preset glass (saved & persistent)"
+        notify-send "Glass Theme" "Applied: $preset glass (saved & persistent)"
+    fi
 }
 
 case "$1" in
     restore)
         PRESET="liquid"
         [ -f "$PRESET_FILE" ] && PRESET=$(cat "$PRESET_FILE")
-        apply_preset "$PRESET"
+        apply_preset "$PRESET" "no-reload"
         ;;
     liquid|frosted|crystal|deep|off)
         apply_preset "$1"
