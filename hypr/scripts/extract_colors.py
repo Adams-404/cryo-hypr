@@ -179,8 +179,13 @@ hl.config({{
     subprocess.run(["hyprctl", "eval", f'hl.config({{ general = {{ col = {{ active_border = {hypr_hex} }} }} }})'],
                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    # Reload SwayNC CSS if running
-    subprocess.run(["swaync-client", "-R", "-rs"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    # Reload SwayNC CSS only if running (prevents hang if daemon is not started)
+    try:
+        res = subprocess.run(["pgrep", "-x", "swaync"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if res.returncode == 0:
+            subprocess.run(["swaync-client", "-R", "-rs"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=1.0)
+    except Exception:
+        pass
 
     print(f"Theme applied: Accent={accent_hex}, Glass={bg_waybar}")
 
